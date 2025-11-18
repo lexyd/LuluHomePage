@@ -78,14 +78,55 @@
   position: relative;
   overflow: hidden;
   backdrop-filter: blur(10px);
+  transition: background 0.5s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-cta .cta-text {
+  display: inline-block;
+  transform: translateY(0);
+  opacity: 1;
 }
 
 .hero-cta:hover {
   background: white;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  transition: background 0.3s var(--ease-curve),
-    transform 0.3s var(--ease-curve), box-shadow 0.3s var(--ease-curve);
+}
+
+.hero-cta:hover .cta-text {
+  animation: ctaSlotRoll 420ms cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+@keyframes ctaSlotRoll {
+  /* Start: normal state */
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  /* Move up and fade out */
+  25% {
+    transform: translateY(-110%);
+    opacity: 0;
+  }
+
+  /* Teleport below while still hidden */
+  26% {
+    transform: translateY(110%);
+    opacity: 0;
+  }
+
+  /* Come back up, slightly overshoot */
+  70% {
+    transform: translateY(-6%);
+    opacity: 1;
+  }
+
+  /* Settle back to normal */
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 /* Hide Swiper Navigation Buttons */

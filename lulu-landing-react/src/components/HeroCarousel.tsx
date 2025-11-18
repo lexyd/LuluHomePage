@@ -164,7 +164,7 @@ const HeroCarousel = () => {
                 )}
                 <h1 className="hero-heading">{slide.heading}</h1>
                 <a href={slide.cta.url} className="hero-cta">
-                  {slide.cta.label}
+                  <span className="cta-text">{slide.cta.label}</span>
                 </a>
               </div>
             </div>
