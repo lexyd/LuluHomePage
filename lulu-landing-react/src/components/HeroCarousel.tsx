@@ -45,6 +45,7 @@ const HeroCarousel = () => {
   const [isPlaying, setIsPlaying] = useState(true);
   const swiperRef = useRef<SwiperType | null>(null);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+  const previousActiveIndex = useRef<number>(0);
 
   const toggleAutoplay = () => {
     if (swiperRef.current && swiperRef.current.autoplay) {
@@ -98,7 +99,9 @@ const HeroCarousel = () => {
           type: "bullets",
           el: ".hero-pagination",
           renderBullet: (index: number, className: string) => {
-            return `<span class="${className}">${index + 1}</span>`;
+            return `<span class="${className}"><span class="bullet-inner">${
+              index + 1
+            }</span></span>`;
           },
         }}
         autoplay={{
@@ -110,6 +113,24 @@ const HeroCarousel = () => {
         className="hero-swiper"
         onSwiper={(swiper) => {
           swiperRef.current = swiper;
+        }}
+        onSlideChange={(swiper) => {
+          // Add exiting class to previous active bullet
+          const bullets = document.querySelectorAll(
+            ".hero-pagination .swiper-pagination-bullet"
+          );
+          const prevBullet = bullets[previousActiveIndex.current];
+
+          if (prevBullet && previousActiveIndex.current !== swiper.realIndex) {
+            prevBullet.classList.add("bullet-exiting");
+
+            // Remove class after animation completes
+            setTimeout(() => {
+              prevBullet.classList.remove("bullet-exiting");
+            }, 350);
+          }
+
+          previousActiveIndex.current = swiper.realIndex;
         }}
         onAutoplayStart={() => setIsPlaying(true)}
         onAutoplayStop={() => setIsPlaying(false)}
