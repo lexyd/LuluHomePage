@@ -49,7 +49,7 @@ const HeroCarousel = () => {
   const toggleAutoplay = () => {
     if (swiperRef.current && swiperRef.current.autoplay) {
       const newPlayingState = !isPlaying;
-      
+
       if (newPlayingState) {
         swiperRef.current.autoplay.start();
         // Play all videos
@@ -69,7 +69,7 @@ const HeroCarousel = () => {
           }
         });
       }
-      
+
       setIsPlaying(newPlayingState);
     }
   };
@@ -95,6 +95,8 @@ const HeroCarousel = () => {
         navigation
         pagination={{
           clickable: true,
+          type: "bullets",
+          el: ".hero-pagination",
           renderBullet: (index: number, className: string) => {
             return `<span class="${className}">${index + 1}</span>`;
           },
@@ -149,8 +151,12 @@ const HeroCarousel = () => {
         ))}
       </Swiper>
 
-      {/* Play/Pause Button with Progress Ring */}
+      {/* Combined Controls: Pagination + Play/Pause Button */}
       <div className="hero-controls">
+        {/* Custom Pagination Container */}
+        <div className="hero-pagination"></div>
+
+        {/* Play/Pause Button */}
         <button
           className="hero-play-pause"
           onClick={toggleAutoplay}
