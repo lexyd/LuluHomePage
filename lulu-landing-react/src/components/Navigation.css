@@ -3,9 +3,10 @@
   top: 0;
   left: 0;
   right: 0;
-  background: white;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
   z-index: 1000;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
 }
 
 .nav-container {
@@ -34,10 +35,11 @@
 .nav-link {
   text-decoration: none;
   color: #222;
+  font-family: "Saans", "Saana", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
-  font-size: 0.95rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  font-size: 0.875rem;
+  text-transform: capitalize;
+  letter-spacing: 0.3px;
   transition: color 0.2s;
 }
 
@@ -47,8 +49,26 @@
 
 .nav-actions {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   align-items: center;
+}
+
+.nav-search {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #222;
+  cursor: pointer;
+  transition: color 0.2s;
+  font-size: 0.875rem;
+}
+
+.nav-search:hover {
+  color: #d31334;
+}
+
+.nav-search svg {
+  stroke-width: 2;
 }
 
 .nav-icon {
@@ -58,6 +78,9 @@
   padding: 0.5rem;
   color: #222;
   transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .nav-icon:hover {
