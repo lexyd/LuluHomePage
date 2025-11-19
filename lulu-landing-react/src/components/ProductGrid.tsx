@@ -44,8 +44,13 @@ const ProductGrid = () => {
     <section className="product-grid-section">
       <div className="container">
         <div className="section-header">
-          <h2>Trending Now</h2>
-          <p>Our most popular picks of the season</p>
+          <div className="section-header-content">
+            <h2>Trending Now</h2>
+            <p>Our most popular picks of the season</p>
+          </div>
+          <a href="/new" className="section-cta">
+            Shop All New
+          </a>
         </div>
         <div className="product-grid">
           {products.map((product) => (
