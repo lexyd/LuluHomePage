@@ -93,7 +93,7 @@ const HeroCarousel = () => {
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         effect="slide"
-        speed={1200}
+        speed={800}
         navigation
         pagination={{
           clickable: true,
