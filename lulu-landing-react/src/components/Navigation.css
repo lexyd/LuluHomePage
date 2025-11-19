@@ -1,18 +1,20 @@
 .navigation {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 1rem;
+  left: 1rem;
+  right: 1rem;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   z-index: 1000;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  opacity: 0.5;
 }
 
 .nav-container {
   max-width: 1440px;
   margin: 0 auto;
-  padding: 1rem 2rem;
+  padding: 0rem 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -23,6 +25,7 @@
   display: flex;
   align-items: center;
   color: #d31334;
+  flex-shrink: 0;
 }
 
 .nav-links {
