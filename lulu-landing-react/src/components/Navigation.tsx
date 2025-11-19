@@ -10,9 +10,12 @@ const Navigation = () => {
         {/* Logo */}
         <div className="nav-logo">
           <a href="/">
-            <svg width="40" height="40" viewBox="0 0 40 40" fill="currentColor">
-              <path d="M29.4 0L10.6 40h8.1L37.5 0h-8.1zM10.6 0L2.5 20 10.6 40h8.1L10.6 0z" />
-            </svg>
+            <img
+              src="/images/lululemon-logo.svg"
+              alt="lululemon"
+              width="160"
+              height="44"
+            />
           </a>
         </div>
 
