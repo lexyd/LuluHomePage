@@ -21,24 +21,72 @@ const Navigation = () => {
 
         {/* Main Navigation Links */}
         <div className={`nav-links ${isMenuOpen ? "open" : ""}`}>
-          <a href="/new" className="nav-link">
-            New
-          </a>
-          <a href="/women" className="nav-link">
-            Women
-          </a>
-          <a href="/men" className="nav-link">
-            Men
-          </a>
-          <a href="/accessories" className="nav-link">
-            Accessories
-          </a>
-          <a href="/activities" className="nav-link">
-            Activities
-          </a>
-          <a href="/mothers-day" className="nav-link">
-            Mother's Day
-          </a>
+          <div className="nav-link-wrapper">
+            <a href="/new" className="nav-link">
+              New
+            </a>
+            <div className="nav-dropdown">
+              <div className="dropdown-content">
+                <p className="dropdown-placeholder">New dropdown content</p>
+              </div>
+            </div>
+          </div>
+          <div className="nav-link-wrapper">
+            <a href="/women" className="nav-link">
+              Women
+            </a>
+            <div className="nav-dropdown">
+              <div className="dropdown-content">
+                <p className="dropdown-placeholder">Women dropdown content</p>
+              </div>
+            </div>
+          </div>
+          <div className="nav-link-wrapper">
+            <a href="/men" className="nav-link">
+              Men
+            </a>
+            <div className="nav-dropdown">
+              <div className="dropdown-content">
+                <p className="dropdown-placeholder">Men dropdown content</p>
+              </div>
+            </div>
+          </div>
+          <div className="nav-link-wrapper">
+            <a href="/accessories" className="nav-link">
+              Accessories
+            </a>
+            <div className="nav-dropdown">
+              <div className="dropdown-content">
+                <p className="dropdown-placeholder">
+                  Accessories dropdown content
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="nav-link-wrapper">
+            <a href="/activities" className="nav-link">
+              Activities
+            </a>
+            <div className="nav-dropdown">
+              <div className="dropdown-content">
+                <p className="dropdown-placeholder">
+                  Activities dropdown content
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="nav-link-wrapper">
+            <a href="/mothers-day" className="nav-link">
+              Mother's Day
+            </a>
+            <div className="nav-dropdown">
+              <div className="dropdown-content">
+                <p className="dropdown-placeholder">
+                  Mother's Day dropdown content
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Right Side Actions */}
