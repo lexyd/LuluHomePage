@@ -13,8 +13,8 @@ const Navigation = () => {
             <img
               src="/images/lululemon-logo.svg"
               alt="lululemon"
-              width="160"
-              height="44"
+              width="120"
+              height="33"
             />
           </a>
         </div>
