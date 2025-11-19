@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
 import "./HeroCarousel.css";
 
@@ -22,13 +22,13 @@ const slides: Slide[] = [
     type: "video",
     src: "/videos/play-like-its-personal.mp4",
     heading: "Play like it's personal",
-    cta: { label: "Shop Women's What's New", url: "#" },
+    cta: { label: "Shop New Women's", url: "#" },
   },
   {
     id: 2,
     type: "image",
     src: "/images/game-set-unmatched-gear.jpg",
-    heading: "Game. Set. Unmatched gear.",
+    heading: "Game. Set.  Unmatched gear.",
     cta: { label: "Explore Tennis", url: "#" },
   },
   {
@@ -36,13 +36,13 @@ const slides: Slide[] = [
     type: "video",
     src: "/videos/slnsh-x-lululemon.mp4",
     heading: "Saul Nash x lululemon",
-    subheading: "Movement, evolved.",
-    cta: { label: "Shop the Collection", url: "#" },
+    cta: { label: "Shop Saul Nash", url: "#" },
   },
 ];
 
 const HeroCarousel = () => {
   const [isPlaying, setIsPlaying] = useState(true);
+  const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const swiperRef = useRef<SwiperType | null>(null);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const previousActiveIndex = useRef<number>(0);
@@ -91,8 +91,9 @@ const HeroCarousel = () => {
   return (
     <section className="hero-carousel">
       <Swiper
-        modules={[Navigation, Pagination, Autoplay, EffectFade]}
-        effect="fade"
+        modules={[Navigation, Pagination, Autoplay]}
+        effect="slide"
+        speed={1200}
         navigation
         pagination={{
           clickable: true,
@@ -109,28 +110,36 @@ const HeroCarousel = () => {
           disableOnInteraction: false,
           pauseOnMouseEnter: false,
         }}
-        loop
+        rewind={true}
         className="hero-swiper"
         onSwiper={(swiper) => {
           swiperRef.current = swiper;
         }}
         onSlideChange={(swiper) => {
-          // Add exiting class to previous active bullet
+          const currentIndex = swiper.realIndex;
+          const prevIndex = previousActiveIndex.current;
+
+          // Update active slide index for content display
+          setActiveSlideIndex(currentIndex);
+
+          // Remove exiting class from all bullets
           const bullets = document.querySelectorAll(
-            ".hero-pagination .swiper-pagination-bullet"
+            ".swiper-pagination-bullet"
           );
-          const prevBullet = bullets[previousActiveIndex.current];
+          bullets.forEach((bullet) => {
+            bullet.classList.remove("bullet-exiting");
+          });
 
-          if (prevBullet && previousActiveIndex.current !== swiper.realIndex) {
-            prevBullet.classList.add("bullet-exiting");
-
-            // Remove class after animation completes
+          // Add exiting class to the previous bullet
+          if (bullets[prevIndex]) {
+            bullets[prevIndex].classList.add("bullet-exiting");
+            // Remove the class after animation completes
             setTimeout(() => {
-              prevBullet.classList.remove("bullet-exiting");
+              bullets[prevIndex]?.classList.remove("bullet-exiting");
             }, 350);
           }
 
-          previousActiveIndex.current = swiper.realIndex;
+          previousActiveIndex.current = currentIndex;
         }}
         onAutoplayStart={() => setIsPlaying(true)}
         onAutoplayStop={() => setIsPlaying(false)}
@@ -158,19 +167,42 @@ const HeroCarousel = () => {
                 />
               )}
               <div className="hero-overlay" />
-              <div className="hero-content">
-                {slide.subheading && (
-                  <p className="hero-subheading">{slide.subheading}</p>
-                )}
-                <h1 className="hero-heading">{slide.heading}</h1>
-                <a href={slide.cta.url} className="hero-cta">
-                  <span className="cta-text">{slide.cta.label}</span>
-                </a>
-              </div>
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
+
+      {/* Fixed Content Overlay */}
+      <div className="hero-content">
+        {slides[activeSlideIndex].subheading && (
+          <p key={`sub-${activeSlideIndex}`} className="hero-subheading">
+            {slides[activeSlideIndex].subheading}
+          </p>
+        )}
+        <h1
+          key={`heading-${activeSlideIndex}`}
+          className={`hero-heading ${
+            slides[activeSlideIndex].id === 2 ? "hero-heading--multiline" : ""
+          }`}
+        >
+          {slides[activeSlideIndex].heading.split(/\s+/).map((word, i) => (
+            <span
+              key={i}
+              className="hero-heading-word"
+              style={{ animationDelay: `${150 + i * 80}ms` }}
+            >
+              {word}
+            </span>
+          ))}
+        </h1>
+        <a
+          key={`cta-${activeSlideIndex}`}
+          href={slides[activeSlideIndex].cta.url}
+          className="hero-cta"
+        >
+          <span className="cta-text">{slides[activeSlideIndex].cta.label}</span>
+        </a>
+      </div>
 
       {/* Combined Controls: Pagination + Play/Pause Button */}
       <div className="hero-controls">
