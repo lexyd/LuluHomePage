@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import "./ProductGrid.css";
 
 interface Product {
@@ -11,35 +12,59 @@ interface Product {
 const products: Product[] = [
   {
     id: 1,
-    name: 'Pace Breaker Short 7"',
-    image: "/images/pace-breaker-linerless-short-7.png",
+    name: "Women's Tennis Collection",
+    image: "/images/tennis-3up-women.jpg",
     price: "$68",
-    category: "Shorts",
+    category: "Women's Tennis",
   },
   {
     id: 2,
-    name: "License To Train Tank Top",
-    image: "/images/license-to-train-tank-top.png",
+    name: "Men's Tennis Collection",
+    image: "/images/tennis-3up-men.jpg",
     price: "$58",
-    category: "Tops",
+    category: "Men's Tennis",
   },
   {
     id: 3,
-    name: 'Align™ High-Rise Pant 28"',
-    image: "/images/lululemon-align-cami-strap-dress.png",
+    name: "Tennis Accessories",
+    image: "/images/tennis-3up-accessories.jpg",
     price: "$98",
-    category: "Pants",
+    category: "Accessories",
   },
 ];
 
 const ProductGrid = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
+
+      const rect = sectionRef.current.getBoundingClientRect();
+      const scrollProgress = Math.max(
+        0,
+        Math.min(1, (window.innerHeight - rect.top) / window.innerHeight)
+      );
+
+      // Apply parallax transform
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        const translateY = (1 - scrollProgress) * 100;
+        sectionRef.current.style.transform = `translateY(${translateY}px)`;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Initial call
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <section className="product-grid-section">
+    <section ref={sectionRef} className="product-grid-section">
       <div className="section-header-wrapper">
         <div className="section-header">
           <div className="section-header-content">
             <h2>Trending Now</h2>
-            <p>Our most popular picks of the season</p>
           </div>
           <a href="/new" className="section-cta">
             <span className="cta-text">Shop All New</span>
@@ -51,7 +76,6 @@ const ProductGrid = () => {
           <div key={product.id} className="product-card">
             <div className="product-image">
               <img src={product.image} alt={product.name} />
-              <button className="quick-add">Quick Add</button>
             </div>
             <div className="product-info">
               <span className="product-category">{product.category}</span>

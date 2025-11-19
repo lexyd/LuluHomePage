@@ -1,10 +1,13 @@
 .product-grid-section {
   padding: 0;
   background: #fff;
+  /* Parallax effect */
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 .section-header-wrapper {
-  padding: 4rem 2rem 3rem;
+  padding: 2rem 2rem 1.5rem;
   max-width: 1400px;
   margin: 0 auto;
 }
@@ -23,6 +26,7 @@
   font-size: 2.5rem;
   margin-bottom: 0.5rem;
   color: var(--lulu-dark);
+  font-weight: inherit;
 }
 
 .section-header p {
