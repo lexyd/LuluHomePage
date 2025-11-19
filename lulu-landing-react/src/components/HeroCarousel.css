@@ -25,20 +25,24 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 1.5s cubic-bezier(0.45, 0.05, 0.15, 0.95);
-  transform: scale(1);
+  transition: transform 0.15s cubic-bezier(0.5, 0, 0, 1);
+  transform: scale(1.25) translateX(0);
 }
 
-/* Active slide grows slowly creating a breathing/page-flip effect */
+/* Active slide - returns to normal size after transition */
 .swiper-slide-active .hero-media {
-  transform: scale(1.15);
-  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: scale(1) translateX(0);
+  transition: transform 0.8s cubic-bezier(0.45, 0.05, 0.15, 0.95);
 }
 
-/* Slides that are entering start at normal size */
-.swiper-slide-prev .hero-media,
+/* Next slide entering from right - starts offset and scaled */
 .swiper-slide-next .hero-media {
-  transform: scale(1);
+  transform: scale(1.25) translateX(8%);
+}
+
+/* Previous slide exiting to left - moves offset and scaled */
+.swiper-slide-prev .hero-media {
+  transform: scale(1.25) translateX(-8%);
 }
 
 .hero-overlay {
