@@ -1,13 +1,18 @@
 .product-grid-section {
-  padding: 4rem 0;
+  padding: 0;
   background: #fff;
+}
+
+.section-header-wrapper {
+  padding: 4rem 2rem 3rem;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .section-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 3rem;
 }
 
 .section-header-content {
@@ -33,23 +38,59 @@
   text-decoration: none;
   font-weight: 500;
   font-size: 0.875rem;
-  border-radius: 4px;
-  transition: all 0.3s ease;
+  border-radius: 100px;
+  transition: all 0.2s ease;
   border: 2px solid #222;
   white-space: nowrap;
+  overflow: hidden;
+  position: relative;
+}
+
+.section-cta .cta-text {
+  display: inline-block;
 }
 
 .section-cta:hover {
   background: white;
   color: #222;
   border-color: #222;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+}
+
+.section-cta:hover .cta-text {
+  animation: ctaSlotRoll 420ms cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* Hover slot-machine animation for CTA */
+@keyframes ctaSlotRoll {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  25% {
+    transform: translateY(-20%);
+    opacity: 0;
+  }
+  26% {
+    transform: translateY(50%);
+    opacity: 0;
+  }
+  70% {
+    transform: translateY(-20%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  margin-bottom: 3rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin-bottom: 0;
 }
 
 .product-card {
@@ -59,6 +100,7 @@
 
 .product-card:hover {
   transform: translateY(-8px);
+  z-index: 1;
 }
 
 .product-image {
@@ -66,7 +108,7 @@
   aspect-ratio: 3/4;
   overflow: hidden;
   background: var(--lulu-light-gray);
-  border-radius: 8px;
+  border-radius: 0;
   margin-bottom: 1rem;
 }
 
@@ -134,6 +176,12 @@
   font-size: 1rem;
   color: var(--lulu-dark);
   font-weight: 500;
+}
+
+.view-all-wrapper {
+  padding: 3rem 2rem 4rem;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .view-all {

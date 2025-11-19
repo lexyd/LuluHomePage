@@ -30,43 +30,38 @@ const products: Product[] = [
     price: "$98",
     category: "Pants",
   },
-  {
-    id: 4,
-    name: "Fast and Free Hat",
-    image: "/images/fast-and-free-running-hat-wovenair.png",
-    price: "$38",
-    category: "Accessories",
-  },
 ];
 
 const ProductGrid = () => {
   return (
     <section className="product-grid-section">
-      <div className="container">
+      <div className="section-header-wrapper">
         <div className="section-header">
           <div className="section-header-content">
             <h2>Trending Now</h2>
             <p>Our most popular picks of the season</p>
           </div>
           <a href="/new" className="section-cta">
-            Shop All New
+            <span className="cta-text">Shop All New</span>
           </a>
         </div>
-        <div className="product-grid">
-          {products.map((product) => (
-            <div key={product.id} className="product-card">
-              <div className="product-image">
-                <img src={product.image} alt={product.name} />
-                <button className="quick-add">Quick Add</button>
-              </div>
-              <div className="product-info">
-                <span className="product-category">{product.category}</span>
-                <h3 className="product-name">{product.name}</h3>
-                <p className="product-price">{product.price}</p>
-              </div>
+      </div>
+      <div className="product-grid">
+        {products.map((product) => (
+          <div key={product.id} className="product-card">
+            <div className="product-image">
+              <img src={product.image} alt={product.name} />
+              <button className="quick-add">Quick Add</button>
             </div>
-          ))}
-        </div>
+            <div className="product-info">
+              <span className="product-category">{product.category}</span>
+              <h3 className="product-name">{product.name}</h3>
+              <p className="product-price">{product.price}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="view-all-wrapper">
         <div className="view-all">
           <a href="#" className="btn">
             Shop All Products
