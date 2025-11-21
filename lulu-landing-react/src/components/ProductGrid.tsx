@@ -5,8 +5,6 @@ interface Product {
   id: number;
   name: string;
   image: string;
-  price: string;
-  category: string;
 }
 
 const products: Product[] = [
@@ -14,22 +12,16 @@ const products: Product[] = [
     id: 1,
     name: "Women's Tennis Collection",
     image: "/images/tennis-3up-women.jpg",
-    price: "$68",
-    category: "Women's Tennis",
   },
   {
     id: 2,
     name: "Men's Tennis Collection",
     image: "/images/tennis-3up-men.jpg",
-    price: "$58",
-    category: "Men's Tennis",
   },
   {
     id: 3,
     name: "Tennis Accessories",
     image: "/images/tennis-3up-accessories.jpg",
-    price: "$98",
-    category: "Accessories",
   },
 ];
 
@@ -78,9 +70,7 @@ const ProductGrid = () => {
               <img src={product.image} alt={product.name} />
             </div>
             <div className="product-info">
-              <span className="product-category">{product.category}</span>
               <h3 className="product-name">{product.name}</h3>
-              <p className="product-price">{product.price}</p>
             </div>
           </div>
         ))}
