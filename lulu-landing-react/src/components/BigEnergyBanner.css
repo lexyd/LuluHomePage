@@ -1,4 +1,4 @@
-.parallax-banner {
+.big-energy-banner {
   position: relative;
   width: 100%;
   height: 100vh;
@@ -8,7 +8,7 @@
   justify-content: center;
 }
 
-.parallax-banner-image {
+.big-energy-banner-image {
   position: absolute;
   top: -10%;
   left: 0;
@@ -18,13 +18,13 @@
   transition: transform 0.1s ease-out;
 }
 
-.parallax-banner-image img {
+.big-energy-banner-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.parallax-banner-content {
+.big-energy-banner-content {
   position: relative;
   z-index: 2;
   text-align: center;
@@ -35,7 +35,7 @@
   gap: 2rem;
 }
 
-.parallax-banner-title {
+.big-energy-banner-title {
   font-family: "Saans", "Saana", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: clamp(3.5rem, 5vw, 6rem);
   font-weight: 400;
@@ -44,7 +44,7 @@
   margin: 0;
 }
 
-.parallax-banner-cta {
+.big-energy-banner-cta {
   display: inline-block;
   padding: 0.875rem 1.75rem;
   background: rgba(255, 255, 255, 0.9);
@@ -59,18 +59,18 @@
   position: relative;
 }
 
-.parallax-banner-cta .cta-text {
+.big-energy-banner-cta .cta-text {
   display: inline-block;
 }
 
-.parallax-banner-cta:hover {
+.big-energy-banner-cta:hover {
   background: white;
   color: #222;
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
 }
 
-.parallax-banner-cta:hover .cta-text {
+.big-energy-banner-cta:hover .cta-text {
   animation: ctaSlotRoll 420ms cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
@@ -100,11 +100,11 @@
 
 /* Mobile Styles */
 @media (max-width: 768px) {
-  .parallax-banner {
+  .big-energy-banner {
     height: 400px;
   }
 
-  .parallax-banner-content {
+  .big-energy-banner-content {
     gap: 1.5rem;
   }
 }
