@@ -7,9 +7,8 @@
 }
 
 .section-header-wrapper {
-  padding: 2rem 2rem 1.5rem;
-  max-width: 1400px;
-  margin: 0 auto;
+  padding: 1rem 1rem 1.5rem;
+  margin: 0;
 }
 
 .section-header {
@@ -18,15 +17,150 @@
   align-items: center;
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.expandable-shop-button {
+  position: relative;
+}
+
+.shop-icon-button {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid #222;
+  background: white;
+  color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: width 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    padding 0.42s cubic-bezier(0.16, 1, 0.3, 1) 0.04s,
+    gap 0.42s cubic-bezier(0.16, 1, 0.3, 1) 0.04s, background 0.25s ease,
+    color 0.25s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+  position: relative;
+}
+
+.shop-icon-button svg {
+  transition: all 0.5s ease;
+}
+
+.shop-icon-button.hovered svg {
+  animation: ctaSlotRoll 420ms cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.shop-icon-button.closing svg {
+  animation: ctaSlotRoll 420ms cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.shop-icon-button.show-text {
+  width: auto;
+  padding: 0 1.25rem;
+  border-radius: 100px;
+  gap: 0.5rem;
+}
+
+.shop-icon-button.expanded {
+  width: auto;
+  padding: 0 1.25rem;
+  border-radius: 100px;
+  gap: 0.5rem;
+  background: #222;
+  color: white;
+  border-color: #222;
+}
+
+.shop-icon-button .expanded-text {
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  animation: fadeInSlide 0.4s ease forwards;
+  transition: opacity 0.3s ease;
+}
+
+.shop-icon-button:not(.show-text):not(.expanded) .expanded-text {
+  animation: none;
+  opacity: 0;
+}
+
+@keyframes fadeInSlide {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.product-cards-dropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  display: flex;
+  gap: 1rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 10;
+}
+
+.product-cards-dropdown.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-card {
+  width: 180px;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dropdown-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+.dropdown-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.dropdown-card span {
+  display: block;
+  padding: 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #222;
+  text-align: center;
+}
+
 .section-header-content {
   text-align: left;
 }
 
 .section-header h2 {
-  font-size: 2.5rem;
+  font-family: "Saans", "Saana", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: clamp(3.5rem, 5vw, 6rem);
+  font-weight: 400;
+  line-height: 0.96;
+  letter-spacing: -4px;
   margin-bottom: 0.5rem;
   color: var(--lulu-dark);
-  font-weight: inherit;
 }
 
 .section-header p {
@@ -99,11 +233,9 @@
 
 .product-card {
   cursor: pointer;
-  transition: transform 0.3s;
 }
 
 .product-card:hover {
-  transform: translateY(-8px);
   z-index: 1;
 }
 
@@ -190,6 +322,38 @@
 
 .view-all {
   text-align: center;
+}
+
+.view-all .btn {
+  display: inline-block;
+  padding: 0.875rem 1.75rem;
+  background: #222;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.875rem;
+  border-radius: 100px;
+  transition: all 0.2s ease;
+  border: 2px solid #222;
+  white-space: nowrap;
+  overflow: hidden;
+  position: relative;
+}
+
+.view-all .btn:hover {
+  background: white;
+  color: #222;
+  border-color: #222;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+}
+
+.view-all .btn .btn-text {
+  display: inline-block;
+}
+
+.view-all .btn:hover .btn-text {
+  animation: ctaSlotRoll 420ms cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 /* Mobile Styles */

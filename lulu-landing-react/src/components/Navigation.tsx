@@ -23,7 +23,7 @@ const Navigation = () => {
         <div className={`nav-links ${isMenuOpen ? "open" : ""}`}>
           <div className="nav-link-wrapper">
             <a href="/new" className="nav-link">
-              New
+              <span className="nav-link-text">New</span>
             </a>
             <div className="nav-dropdown">
               <div className="dropdown-content">
@@ -33,7 +33,7 @@ const Navigation = () => {
           </div>
           <div className="nav-link-wrapper">
             <a href="/women" className="nav-link">
-              Women
+              <span className="nav-link-text">Women</span>
             </a>
             <div className="nav-dropdown">
               <div className="dropdown-content">
@@ -43,7 +43,7 @@ const Navigation = () => {
           </div>
           <div className="nav-link-wrapper">
             <a href="/men" className="nav-link">
-              Men
+              <span className="nav-link-text">Men</span>
             </a>
             <div className="nav-dropdown">
               <div className="dropdown-content">
@@ -53,7 +53,7 @@ const Navigation = () => {
           </div>
           <div className="nav-link-wrapper">
             <a href="/accessories" className="nav-link">
-              Accessories
+              <span className="nav-link-text">Accessories</span>
             </a>
             <div className="nav-dropdown">
               <div className="dropdown-content">
@@ -65,7 +65,7 @@ const Navigation = () => {
           </div>
           <div className="nav-link-wrapper">
             <a href="/activities" className="nav-link">
-              Activities
+              <span className="nav-link-text">Activities</span>
             </a>
             <div className="nav-dropdown">
               <div className="dropdown-content">
@@ -77,7 +77,7 @@ const Navigation = () => {
           </div>
           <div className="nav-link-wrapper">
             <a href="/mothers-day" className="nav-link">
-              Mother's Day
+              <span className="nav-link-text">Mother's Day</span>
             </a>
             <div className="nav-dropdown">
               <div className="dropdown-content">
