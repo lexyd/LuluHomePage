@@ -1,12 +1,6 @@
 import { useState } from "react";
 import "./PopularCategories.css";
 
-interface Category {
-  id: number;
-  name: string;
-  image: string;
-}
-
 const categories = {
   women: [
     { id: 1, name: "Shorts", image: "/images/shorts.png" },
