@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./ProductGrid.css";
 
 interface Product {
@@ -27,6 +27,10 @@ const products: Product[] = [
 
 const ProductGrid = () => {
   const sectionRef = useRef<HTMLElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [showText, setShowText] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -51,6 +55,28 @@ const ProductGrid = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout>;
+    if (isHovered) {
+      setIsClosing(false);
+      // Wait for animation to complete (420ms) + brief pause (200ms)
+      timer = setTimeout(() => {
+        setShowText(true);
+      }, 620);
+    } else if (!isExpanded && showText) {
+      // On hover out, trigger closing animation first
+      setIsClosing(true);
+      // Wait for closing animation (420ms) before collapsing
+      timer = setTimeout(() => {
+        setShowText(false);
+        setIsClosing(false);
+      }, 420);
+    } else if (!isExpanded && !showText) {
+      setIsClosing(false);
+    }
+    return () => clearTimeout(timer);
+  }, [isHovered, isExpanded, showText]);
+
   return (
     <section ref={sectionRef} className="product-grid-section">
       <div className="section-header-wrapper">
@@ -58,9 +84,55 @@ const ProductGrid = () => {
           <div className="section-header-content">
             <h2>Trending Now</h2>
           </div>
-          <a href="/new" className="section-cta">
-            <span className="cta-text">Shop All New</span>
-          </a>
+          <div className="header-actions">
+            <a href="/new" className="section-cta">
+              <span className="cta-text">Shop All New</span>
+            </a>
+            <div className="expandable-shop-button">
+              <button
+                className={`shop-icon-button ${isHovered ? "hovered" : ""} ${
+                  showText || isExpanded ? "show-text" : ""
+                } ${isExpanded ? "expanded" : ""} ${
+                  isClosing ? "closing" : ""
+                }`}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                onClick={() => setIsExpanded(!isExpanded)}
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z" />
+                </svg>
+                {(showText || isExpanded) && (
+                  <span className="expanded-text">Shop Products</span>
+                )}
+              </button>
+              <div
+                className={`product-cards-dropdown ${isExpanded ? "open" : ""}`}
+              >
+                <div className="dropdown-card">
+                  <img
+                    src="/images/tennis-3up-women.jpg"
+                    alt="Women's Tennis"
+                  />
+                  <span>Women's Tennis</span>
+                </div>
+                <div className="dropdown-card">
+                  <img
+                    src="/images/tennis-3up-accessories.jpg"
+                    alt="Tennis Accessories"
+                  />
+                  <span>Accessories</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div className="product-grid">
@@ -78,7 +150,7 @@ const ProductGrid = () => {
       <div className="view-all-wrapper">
         <div className="view-all">
           <a href="#" className="btn">
-            Shop All Products
+            <span className="btn-text">Shop All Products</span>
           </a>
         </div>
       </div>

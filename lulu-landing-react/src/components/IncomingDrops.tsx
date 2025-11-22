@@ -66,13 +66,7 @@ const IncomingDrops = () => {
             <div key={drop.id} className="drop-card">
               <div className="drop-image">
                 {drop.type === "video" ? (
-                  <video
-                    src={drop.media}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                  />
+                  <video src={drop.media} autoPlay muted loop playsInline />
                 ) : (
                   <img src={drop.media} alt={drop.title} />
                 )}
