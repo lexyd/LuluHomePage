@@ -467,7 +467,7 @@
 
 @media (max-width: 768px) {
   .hero-carousel {
-    height: 70vh;
+    height: 100vh;
     margin-top: 0px;
   }
 
