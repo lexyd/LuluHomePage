@@ -105,12 +105,13 @@
   top: calc(100% + 0.5rem);
   right: 0;
   display: flex;
-  gap: 1rem;
+  flex-direction: column;
+  gap: 0.75rem;
   opacity: 0;
   visibility: hidden;
   transform: translateY(-10px);
   transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  z-index: 10;
+  z-index: 1000;
 }
 
 .product-cards-dropdown.open {
@@ -119,14 +120,43 @@
   transform: translateY(0);
 }
 
+.product-cards-dropdown .dropdown-card {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease,
+    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.product-cards-dropdown.open .dropdown-card:nth-child(1) {
+  animation: slideInDown 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s forwards;
+}
+
+.product-cards-dropdown.open .dropdown-card:nth-child(2) {
+  animation: slideInDown 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.25s forwards;
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .dropdown-card {
-  width: 180px;
+  width: 240px;
   background: white;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .dropdown-card:hover {
@@ -135,18 +165,19 @@
 }
 
 .dropdown-card img {
-  width: 100%;
-  height: 200px;
+  width: 80px;
+  height: 80px;
   object-fit: cover;
+  flex-shrink: 0;
 }
 
 .dropdown-card span {
   display: block;
-  padding: 1rem;
+  padding: 0.75rem 0.75rem 0.75rem 0;
   font-size: 0.875rem;
   font-weight: 500;
   color: #222;
-  text-align: center;
+  flex: 1;
 }
 
 .section-header-content {
@@ -359,11 +390,27 @@
 /* Mobile Styles */
 @media (max-width: 768px) {
   .product-grid-section {
-    padding: 2rem 0;
+    padding: 0;
+  }
+
+  .section-header-wrapper {
+    padding: 1rem;
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
   }
 
   .section-header h2 {
-    font-size: 2rem;
+    font-size: 2.5rem;
+    letter-spacing: -2px;
+  }
+
+  .header-actions {
+    width: 100%;
+    justify-content: space-between;
   }
 
   .product-grid {
@@ -374,5 +421,9 @@
   .quick-add {
     font-size: 0.875rem;
     padding: 0.625rem 1.5rem;
+  }
+
+  .view-all-wrapper {
+    padding: 2rem 1rem 3rem;
   }
 }

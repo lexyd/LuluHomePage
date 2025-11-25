@@ -467,13 +467,13 @@
 
 @media (max-width: 768px) {
   .hero-carousel {
-    height: 80vh;
-    margin-top: 60px;
+    height: 70vh;
+    margin-top: 0px;
   }
 
   .hero-content {
-    bottom: 7rem;
-    padding: 0 1rem;
+    bottom: 25rem;
+    padding: 0 1.5rem;
   }
 
   .hero-subheading {
@@ -482,24 +482,32 @@
   }
 
   .hero-heading {
-    font-size: clamp(1.75rem, 7vw, 2.5rem);
+    font-size: 2.25rem;
+    letter-spacing: -2px;
+    line-height: 1;
     margin-bottom: 1rem;
+  }
+
+  .hero-heading-word {
+    margin-right: 0.5rem;
   }
 
   .hero-cta {
     padding: 0.75rem 1.5rem;
-    font-size: 0.8125rem;
+    font-size: 0.875rem;
   }
 
   .hero-controls {
-    bottom: 1.5rem;
+    bottom: 20rem;
     right: 1rem;
     position: absolute;
+    gap: 7.5rem;
   }
 
   .hero-pagination {
     bottom: 1.5rem !important;
     /* Keep absolute positioning for consistent centering */
+    right: 2rem;
   }
 
   .hero-pagination .swiper-pagination-bullet {

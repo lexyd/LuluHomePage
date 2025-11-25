@@ -127,6 +127,11 @@
   .product-option-section .section-header {
     flex-wrap: wrap;
     gap: 1rem;
+    align-items: flex-start;
+  }
+  .product-option-section .section-header-wrapper {
+    padding: 0 1rem;
+    margin: 0;
   }
 
   .product-option-section .section-header-content {
