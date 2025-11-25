@@ -99,9 +99,8 @@ const Footer = () => {
 
         <div className="footer-description">
           <p>
-            Always keen to chat to folks in the industry so feel free to drop me
-            a line. If you're curious to check the code behind this website —
-            let me know and I can open it up.
+            Always keen to chat to folks in the industry so feel free to say
+            hello.
           </p>
         </div>
       </div>
