@@ -7,6 +7,7 @@ import ProductOption from "./components/ProductOption";
 import BigEnergyBanner from "./components/BigEnergyBanner";
 import PopularCategories from "./components/PopularCategories";
 import IncomingDrops from "./components/IncomingDrops";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -14,13 +15,14 @@ function App() {
       <Navigation />
       <main>
         <HeroCarousel />
-        <ProductGrid />
-        <ParallaxBanner />
         <ProductOption />
+        <ParallaxBanner />
+        <IncomingDrops />
+        <ProductGrid />
         <BigEnergyBanner />
         <PopularCategories />
-        <IncomingDrops />
       </main>
+      <Footer />
     </div>
   );
 }

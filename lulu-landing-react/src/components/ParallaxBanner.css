@@ -35,6 +35,169 @@
   gap: 2rem;
 }
 
+.parallax-banner-content .expandable-shop-button {
+  position: relative;
+}
+
+.parallax-banner-content .shop-icon-button {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid white;
+  background: rgba(255, 255, 255, 0.9);
+  color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: width 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    padding 0.42s cubic-bezier(0.16, 1, 0.3, 1) 0.04s,
+    gap 0.42s cubic-bezier(0.16, 1, 0.3, 1) 0.04s, background 0.25s ease,
+    color 0.25s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+  position: relative;
+}
+
+.parallax-banner-content .shop-icon-button svg {
+  transition: all 0.5s ease;
+}
+
+.parallax-banner-content .shop-icon-button.hovered svg {
+  animation: ctaSlotRoll 420ms cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.parallax-banner-content .shop-icon-button.closing svg {
+  animation: ctaSlotRoll 420ms cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.parallax-banner-content .shop-icon-button.show-text {
+  width: auto;
+  padding: 0 1.25rem;
+  border-radius: 100px;
+  gap: 0.5rem;
+}
+
+.parallax-banner-content .shop-icon-button.expanded {
+  width: auto;
+  padding: 0 1.25rem;
+  border-radius: 100px;
+  gap: 0.5rem;
+  background: #222;
+  color: white;
+  border-color: #222;
+}
+
+.parallax-banner-content .shop-icon-button .expanded-text {
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  animation: fadeInSlide 0.4s ease forwards;
+  transition: opacity 0.3s ease;
+}
+
+.parallax-banner-content
+  .shop-icon-button:not(.show-text):not(.expanded)
+  .expanded-text {
+  animation: none;
+  opacity: 0;
+}
+
+@keyframes fadeInSlide {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.parallax-banner-content .product-cards-dropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 50%;
+  transform: translateX(50%) translateY(-10px);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 1000;
+}
+
+.parallax-banner-content .product-cards-dropdown.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(50%) translateY(0);
+}
+
+.parallax-banner-content .product-cards-dropdown .dropdown-card {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease,
+    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.parallax-banner-content
+  .product-cards-dropdown.open
+  .dropdown-card:nth-child(1) {
+  animation: slideInDown 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s forwards;
+}
+
+.parallax-banner-content
+  .product-cards-dropdown.open
+  .dropdown-card:nth-child(2) {
+  animation: slideInDown 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.25s forwards;
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.parallax-banner-content .dropdown-card {
+  width: 240px;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.parallax-banner-content .dropdown-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+.parallax-banner-content .dropdown-card img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.parallax-banner-content .dropdown-card span {
+  display: block;
+  padding: 0.75rem 0.75rem 0.75rem 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #222;
+  flex: 1;
+}
+
 .parallax-banner-title {
   font-family: "Saans", "Saana", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: clamp(3.5rem, 5vw, 6rem);

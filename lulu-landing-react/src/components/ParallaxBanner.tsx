@@ -1,9 +1,13 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./ParallaxBanner.css";
 
 const ParallaxBanner = () => {
   const bannerRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [showText, setShowText] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,6 +31,25 @@ const ParallaxBanner = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout>;
+    if (isHovered) {
+      setIsClosing(false);
+      timer = setTimeout(() => {
+        setShowText(true);
+      }, 620);
+    } else if (!isExpanded && showText) {
+      setIsClosing(true);
+      timer = setTimeout(() => {
+        setShowText(false);
+        setIsClosing(false);
+      }, 420);
+    } else if (!isExpanded && !showText) {
+      setIsClosing(false);
+    }
+    return () => clearTimeout(timer);
+  }, [isHovered, isExpanded, showText]);
+
   return (
     <section ref={bannerRef} className="parallax-banner">
       <div ref={imageRef} className="parallax-banner-image">
@@ -34,9 +57,43 @@ const ParallaxBanner = () => {
       </div>
       <div className="parallax-banner-content">
         <h2 className="parallax-banner-title">Smash Hits</h2>
-        <a href="/smash-hits" className="parallax-banner-cta">
-          <span className="cta-text">Shop Now</span>
-        </a>
+        <div className="expandable-shop-button">
+          <button
+            className={`shop-icon-button ${isHovered ? "hovered" : ""} ${
+              showText || isExpanded ? "show-text" : ""
+            } ${isExpanded ? "expanded" : ""} ${isClosing ? "closing" : ""}`}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            onClick={() => setIsExpanded(!isExpanded)}
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z" />
+            </svg>
+            {(showText || isExpanded) && (
+              <span className="expanded-text">Shop Now</span>
+            )}
+          </button>
+          <div className={`product-cards-dropdown ${isExpanded ? "open" : ""}`}>
+            <div className="dropdown-card">
+              <img src="/images/tennis-3up-women.jpg" alt="Women's Tennis" />
+              <span>Women's Tennis</span>
+            </div>
+            <div className="dropdown-card">
+              <img
+                src="/images/tennis-3up-accessories.jpg"
+                alt="Tennis Accessories"
+              />
+              <span>Accessories</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

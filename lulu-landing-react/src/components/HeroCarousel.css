@@ -472,7 +472,6 @@
   }
 
   .hero-content {
-    bottom: 25rem;
     padding: 0 1.5rem;
   }
 
@@ -498,7 +497,6 @@
   }
 
   .hero-controls {
-    bottom: 20rem;
     right: 1rem;
     position: absolute;
     gap: 7.5rem;
