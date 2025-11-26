@@ -21,22 +21,22 @@ const slides: Slide[] = [
     id: 1,
     type: "video",
     src: "/videos/play-like-its-personal.mp4",
-    heading: "Play like it's personal",
-    cta: { label: "Shop New Women's", url: "#" },
+    heading: "Engineering Design. At Scale",
+    cta: { label: "View Case Studies", url: "#" },
   },
   {
     id: 2,
     type: "image",
     src: "/images/game-set-unmatched-gear.jpg",
-    heading: "Game. Set.  Unmatched gear.",
-    cta: { label: "Explore Tennis", url: "#" },
+    heading: "Design Meets Engineering.",
+    cta: { label: "Explore Components", url: "#" },
   },
   {
     id: 3,
     type: "video",
     src: "/videos/slnsh-x-lululemon.mp4",
-    heading: "Saul Nash x lululemon",
-    cta: { label: "Shop Saul Nash", url: "#" },
+    heading: "Design Engineer",
+    cta: { label: "About Me", url: "#" },
   },
 ];
 
@@ -46,6 +46,32 @@ const HeroCarousel = () => {
   const swiperRef = useRef<SwiperType | null>(null);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const previousActiveIndex = useRef<number>(0);
+  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
+  const [trail, setTrail] = useState<{ x: number; y: number; id: number }[]>([]);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const newPos = { x: e.clientX, y: e.clientY };
+      setCursorPos(newPos);
+      
+      if (isHovering) {
+        setTrail((prevTrail) => [
+          ...prevTrail,
+          { ...newPos, id: Date.now() },
+        ].slice(-15)); // Keep last 15 trail points
+      }
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [isHovering]);
+
+  useEffect(() => {
+    if (!isHovering) {
+      setTrail([]);
+    }
+  }, [isHovering]);
 
   const toggleAutoplay = () => {
     if (swiperRef.current && swiperRef.current.autoplay) {
@@ -89,7 +115,11 @@ const HeroCarousel = () => {
   }, [isPlaying]);
 
   return (
-    <section className="hero-carousel">
+    <section
+      className="hero-carousel"
+      onMouseEnter={() => setIsHovering(true)}
+      onMouseLeave={() => setIsHovering(false)}
+    >
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         effect="slide"
@@ -249,6 +279,34 @@ const HeroCarousel = () => {
           </span>
         </button>
       </div>
+
+      {/* Custom Cursor with Trail */}
+      {isHovering && (
+        <>
+          {trail.map((point, index) => (
+            <div
+              key={point.id}
+              className="cursor-trail"
+              style={{
+                left: `${point.x}px`,
+                top: `${point.y}px`,
+                opacity: (index / trail.length) * 0.6,
+                transform: `translate(-50%, -50%) scale(${0.3 + (index / trail.length) * 0.7})`,
+              }}
+            />
+          ))}
+          <div
+            className="custom-cursor"
+            style={{
+              left: `${cursorPos.x}px`,
+              top: `${cursorPos.y}px`,
+            }}
+          >
+            <div className="cursor-dot"></div>
+            <div className="cursor-ring"></div>
+          </div>
+        </>
+      )}
     </section>
   );
 };
