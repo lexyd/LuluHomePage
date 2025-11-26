@@ -469,7 +469,7 @@
   .hero-content {
     left: 50%;
     transform: translateX(-50%);
-    bottom: 8rem;
+    bottom: 50%;
     align-items: center;
     text-align: center;
     max-width: 90%;
@@ -533,6 +533,7 @@
 
   .hero-content {
     padding: 0 1.5rem;
+    bottom: 50%;
   }
 
   .hero-subheading {
