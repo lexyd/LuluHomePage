@@ -7,7 +7,7 @@ const Navigation = () => {
       <div className="nav-container">
         {/* Main Navigation Links */}
         <div className="nav-links">
-          <NavLink to="/new" className="nav-link">
+          <NavLink to="/" end className="nav-link">
             <svg
               width="16"
               height="16"
@@ -21,7 +21,7 @@ const Navigation = () => {
             </svg>
             <span className="nav-link-text">Home</span>
           </NavLink>
-          <NavLink to="/women" className="nav-link">
+          <NavLink to="/about" className="nav-link">
             <svg
               width="16"
               height="16"
@@ -61,23 +61,9 @@ const Navigation = () => {
               <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
               <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
             </svg>
-            <span className="nav-link-text">Articles</span>
+            <span className="nav-link-text">Videos</span>
           </NavLink>
-          <NavLink to="/activities" className="nav-link">
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <circle cx="12" cy="12" r="10" />
-              <polygon points="10 8 16 12 10 16 10 8" />
-            </svg>
-            <span className="nav-link-text">Playground</span>
-          </NavLink>
-          <NavLink to="/mothers-day" className="nav-link">
+          <NavLink to="/contact" className="nav-link">
             <svg
               width="16"
               height="16"

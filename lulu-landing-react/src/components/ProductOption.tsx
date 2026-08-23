@@ -106,7 +106,7 @@ const ProductOption = () => {
       <div className="section-header-wrapper">
         <div className="section-header">
           <div className="section-header-content">
-            <h2>Leylah Fernandez approved</h2>
+            <h2>Selected Projects</h2>
           </div>
           <div className="carousel-controls">
             <button

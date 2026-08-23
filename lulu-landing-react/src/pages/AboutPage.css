@@ -1,0 +1,158 @@
+.about-page {
+  min-height: 100vh;
+  background: #fff;
+  color: var(--lulu-dark);
+}
+
+.about-essay {
+  width: min(100%, 1440px);
+  margin: 0 auto;
+  padding: 9.5rem 2rem 5rem;
+}
+
+.about-rail {
+  width: min(100%, 700px);
+  margin: 0 auto;
+}
+
+.about-essay h1 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.about-copy {
+  margin-top: 4.25rem;
+}
+
+.about-copy p,
+.about-note p {
+  margin: 0;
+  color: var(--lulu-dark);
+  font-size: clamp(1.05rem, 1.45vw, 1.22rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.55;
+}
+
+.about-copy > p + p,
+.about-copy > p + blockquote,
+.about-copy > blockquote + p,
+.about-copy > p + h2,
+.about-copy > figure + h2,
+.about-note + .about-note {
+  margin-top: 1.75rem;
+}
+
+.about-copy h2 {
+  margin: 3.5rem 0 0;
+  font-size: clamp(1.35rem, 2vw, 1.75rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.15;
+}
+
+.about-note {
+  margin-top: 1.25rem;
+}
+
+.about-note h3 {
+  margin: 0 0 0.45rem;
+  color: var(--lulu-dark);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.about-note a {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  margin-top: 0.85rem;
+  color: var(--lulu-dark);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  transition:
+    color 260ms var(--ease-in-out),
+    transform 260ms var(--ease-in-out);
+}
+
+.about-note a:hover {
+  color: var(--lulu-dark);
+  transform: translateX(0.18rem);
+}
+
+.about-link-icon {
+  width: 1rem;
+  height: 1rem;
+  margin-left: 0.35rem;
+  stroke-width: 2;
+}
+
+.about-copy blockquote {
+  margin: 2rem 0;
+  padding: 0.2rem 0 0.2rem 1.25rem;
+  border-left: 2px solid rgba(34, 34, 34, 0.12);
+}
+
+.about-copy blockquote p {
+  color: var(--lulu-dark);
+  font-style: italic;
+}
+
+.about-running-figure {
+  width: min(100%, 26rem);
+  margin: 3.25rem 0 0;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.about-running-figure img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: 63% center;
+}
+
+@media (max-width: 768px) {
+  .about-essay {
+    padding: 7rem 1.25rem 3.5rem;
+  }
+
+  .about-copy {
+    margin-top: 3rem;
+  }
+
+  .about-copy p,
+  .about-note p {
+    font-size: 1.05rem;
+    line-height: 1.58;
+  }
+
+  .about-copy h2 {
+    margin-top: 2.75rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .about-essay {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  .about-copy {
+    margin-top: 2.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-note a {
+    transition: none;
+  }
+}

@@ -7,8 +7,9 @@
 }
 
 .product-option-section .section-header-wrapper {
-  padding: 4rem 2rem 2rem;
-  margin: 0;
+  width: min(100%, 700px);
+  padding: 4rem 0 2rem;
+  margin: 0 auto;
 }
 
 .product-option-section .section-header {
@@ -67,12 +68,14 @@
 
 .product-carousel {
   display: flex;
-  gap: 1.5rem;
+  width: min(100%, 700px);
+  gap: 1rem;
+  margin: 0 auto;
   overflow-x: auto;
   scroll-behavior: smooth;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  padding: 0 2rem 4rem;
+  padding: 0 0 4rem;
 }
 
 .product-carousel::-webkit-scrollbar {
@@ -80,8 +83,8 @@
 }
 
 .product-option-section .product-card {
-  flex: 0 0 calc(33.333% - 1rem);
-  min-width: 300px;
+  flex: 0 0 calc(50% - 0.5rem);
+  min-width: 0;
   cursor: pointer;
 }
 
@@ -130,6 +133,7 @@
     align-items: flex-start;
   }
   .product-option-section .section-header-wrapper {
+    width: auto;
     padding: 0 1rem;
     margin: 0;
   }

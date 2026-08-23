@@ -50,7 +50,7 @@ const IncomingDrops = () => {
   return (
     <section className="incoming-drops-section">
       <div className="drops-container">
-        <h2 className="drops-title">Incoming: New drops</h2>
+        <h2 className="drops-title">Selected Projects</h2>
         <div className="drops-grid">
           {drops.map((drop) => (
             <div key={drop.id} className="drop-card">

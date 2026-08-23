@@ -4,25 +4,25 @@
 }
 
 .drops-container {
-  max-width: 1400px;
+  max-width: 760px;
   margin: 0 auto;
-  padding: 4rem 2rem;
+  padding: 3rem 2rem 4rem;
 }
 
 .drops-title {
   font-family: "Saans", "Saana", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: clamp(2rem, 3vw, 3rem);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
   font-weight: 400;
   letter-spacing: -2px;
-  margin: 0 0 2.5rem 0;
+  margin: 0 0 1.75rem 0;
   color: #222;
 }
 
 .drops-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  row-gap: 2rem;
+  gap: 1rem;
+  row-gap: 1.35rem;
 }
 
 .drop-card {
@@ -33,7 +33,7 @@
 .drop-image {
   position: relative;
   width: 100%;
-  aspect-ratio: 4/3;
+  aspect-ratio: 4/3.2;
   overflow: hidden;
   background: #e5e5e5;
   border-radius: 4px;
@@ -61,7 +61,7 @@
 }
 
 .drop-title {
-  font-size: 1.125rem;
+  font-size: 0.92rem;
   font-weight: 400;
   margin: 0;
   color: #222;
@@ -93,7 +93,7 @@
 /* Mobile Styles */
 @media (max-width: 768px) {
   .drops-container {
-    padding: 3rem 1rem;
+    padding: 2.5rem 1rem 3rem;
   }
 
   .drops-title {
@@ -102,13 +102,13 @@
   }
 
   .drops-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
   }
 }
 
-@media (min-width: 769px) and (max-width: 1024px) {
+@media (max-width: 520px) {
   .drops-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
   }
 }

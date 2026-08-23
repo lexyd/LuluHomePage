@@ -1,21 +1,19 @@
 import Footer from "../components/Footer";
+import FutureNote from "../components/FutureNote";
 import HeroCarousel from "../components/HeroCarousel";
+import HomeIntro from "../components/HomeIntro";
 import IncomingDrops from "../components/IncomingDrops";
 import Navigation from "../components/Navigation";
-import ParallaxBanner from "../components/ParallaxBanner";
-import PopularCategories from "../components/PopularCategories";
-import ProductOption from "../components/ProductOption";
 
 const HomePage = () => {
   return (
     <>
       <Navigation />
       <main>
+        <HomeIntro />
         <HeroCarousel />
-        <ProductOption />
-        <ParallaxBanner />
         <IncomingDrops />
-        <PopularCategories />
+        <FutureNote />
       </main>
       <Footer />
     </>
