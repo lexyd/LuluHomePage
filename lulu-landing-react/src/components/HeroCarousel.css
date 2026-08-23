@@ -1,16 +1,62 @@
 .hero-showcase {
+  --home-card-radius: 16px;
   width: min(calc(100% - 4rem), 760px);
   margin: 0 auto 0.75rem;
 }
 
+.hero-showcase-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0 0 1rem;
+}
+
 .hero-showcase-label {
-  margin: 0 0 1.75rem;
+  margin: 0;
   color: #222;
-  font-family: "Saans", "Saana", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
   font-weight: 400;
-  letter-spacing: -2px;
+  letter-spacing: -1px;
   line-height: 1.2;
+}
+
+.hero-showcase-link {
+  display: inline-flex;
+  min-height: 2.25rem;
+  width: fit-content;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+  flex-shrink: 0;
+  overflow: hidden;
+  color: var(--lulu-dark);
+  background: transparent;
+  border: 1px solid rgba(34, 34, 34, 0.16);
+  border-radius: 100px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.hero-showcase-link .cta-text {
+  display: inline-block;
+}
+
+.hero-showcase-link:hover {
+  color: var(--lulu-dark);
+  background: rgba(245, 245, 245, 0.86);
+  transform: translateY(-2px);
+  box-shadow: none;
+}
+
+.hero-showcase-link:hover .cta-text {
+  animation: ctaSlotRoll 420ms cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .hero-carousel {
@@ -20,10 +66,10 @@
   --spotlight-opacity: 0;
   position: relative;
   width: 100%;
-  height: clamp(22rem, 48vw, 34rem);
+  height: clamp(17rem, 34vw, 25rem);
   margin: 0;
   overflow: hidden;
-  border-radius: 12px;
+  border-radius: var(--home-card-radius);
 }
 
 .hero-carousel::after {
@@ -89,11 +135,80 @@
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.2),
-    rgba(0, 0, 0, 0.4)
+    180deg,
+    rgba(0, 0, 0, 0.12) 0%,
+    rgba(0, 0, 0, 0.08) 42%,
+    rgba(0, 0, 0, 0.28) 100%
   );
   z-index: 1;
+}
+
+.hero-slide-info {
+  position: absolute;
+  right: 0;
+  bottom: calc(var(--hero-inset) + 3.4rem);
+  left: 0;
+  z-index: 4;
+  padding: 0 var(--hero-inset);
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(0.7rem);
+  transition:
+    opacity 300ms var(--ease-in-out),
+    transform 300ms var(--ease-in-out);
+}
+
+.hero-slide-info-panel {
+  display: grid;
+  width: min(100%, 19rem);
+  gap: 0.28rem;
+  padding: 0.78rem 0.85rem;
+  color: var(--lulu-dark);
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.68);
+  border-radius: 14px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  pointer-events: auto;
+}
+
+.hero-slide-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.32rem;
+  color: rgba(34, 34, 34, 0.62);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.035em;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.hero-slide-info h3 {
+  margin: 0;
+  color: var(--lulu-dark);
+  font-size: clamp(1.25rem, 2.3vw, 1.55rem);
+  font-weight: 400;
+  letter-spacing: -1.3px;
+  line-height: 0.98;
+}
+
+.hero-slide-info p {
+  display: -webkit-box;
+  margin: 0;
+  overflow: hidden;
+  color: rgba(34, 34, 34, 0.68);
+  font-size: 0.76rem;
+  line-height: 1.3;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.hero-carousel:hover .hero-slide-info,
+.hero-carousel:focus-within .hero-slide-info {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Hide Swiper Navigation Buttons */
@@ -369,14 +484,13 @@
   }
 
   .hero-showcase-label {
-    margin-bottom: 2rem;
-    font-size: 1.75rem;
+    font-size: 1.25rem;
   }
 
   .hero-carousel {
     --hero-inset: 1rem;
     width: 100%;
-    height: clamp(18rem, 58vw, 28rem);
+    height: clamp(15rem, 52vw, 22rem);
     margin-top: 0;
     margin-bottom: 0;
   }
@@ -402,6 +516,32 @@
     width: 40px;
     height: 40px;
     min-width: 40px;
+  }
+
+  .hero-slide-info {
+    bottom: calc(var(--hero-inset) + 3rem);
+    padding: 0.7rem;
+  }
+
+  .hero-slide-info-panel {
+    width: min(100%, 16.5rem);
+    gap: 0.24rem;
+    padding: 0.68rem 0.72rem;
+    border-radius: 12px;
+  }
+
+  .hero-slide-role,
+  .hero-slide-role-separator {
+    display: none;
+  }
+
+  .hero-slide-info h3 {
+    font-size: clamp(1.05rem, 4.4vw, 1.25rem);
+    letter-spacing: -1px;
+  }
+
+  .hero-slide-info p {
+    font-size: 0.7rem;
   }
 
   .progress-ring {
@@ -433,5 +573,18 @@
   .play-pause-icon svg {
     width: 12px;
     height: 12px;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .hero-slide-info {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide-info {
+    transition: none;
   }
 }

@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import type { PointerEvent } from "react";
+import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
@@ -10,11 +11,10 @@ interface Slide {
   type: "video" | "image";
   src: string;
   heading: string;
-  subheading?: string;
-  cta: {
-    label: string;
-    url: string;
-  };
+  category: string;
+  role: string;
+  year: string;
+  description: string;
 }
 
 const slides: Slide[] = [
@@ -22,30 +22,41 @@ const slides: Slide[] = [
     id: 1,
     type: "video",
     src: "/videos/play-like-its-personal.mp4",
-    heading: "Engineering Design. At Scale",
-    cta: { label: "View Case Studies", url: "#" },
+    heading: "Chargefeel 3",
+    category: "Product",
+    role: "Design + Engineering",
+    year: "2026",
+    description: "A performance launch surface shaped around motion and clarity.",
   },
   {
     id: 2,
     type: "image",
     src: "/images/game-set-unmatched-gear.jpg",
-    heading: "Design Meets Engineering.",
-    cta: { label: "Explore Components", url: "#" },
+    heading: "Game Set Unmatched",
+    category: "Campaign",
+    role: "Interaction Design",
+    year: "2026",
+    description: "A tennis-led editorial moment built for fast visual impact.",
   },
   {
     id: 3,
     type: "video",
     src: "/videos/slnsh-x-lululemon.mp4",
-    heading: "Design Engineer",
-    cta: { label: "About Me", url: "#" },
+    heading: "Saul Nash x lululemon",
+    category: "Brand",
+    role: "Product Storytelling",
+    year: "2026",
+    description: "A motion-rich collaboration surface with a premium editorial feel.",
   },
 ];
 
 const HeroCarousel = () => {
   const [isPlaying, setIsPlaying] = useState(true);
+  const [activeIndex, setActiveIndex] = useState(0);
   const swiperRef = useRef<SwiperType | null>(null);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const previousActiveIndex = useRef<number>(0);
+  const activeSlide = slides[activeIndex] ?? slides[0];
 
   const handlePointerMove = (event: PointerEvent<HTMLElement>) => {
     const rect = event.currentTarget.getBoundingClientRect();
@@ -104,9 +115,14 @@ const HeroCarousel = () => {
 
   return (
     <section className="hero-showcase" aria-labelledby="hero-showcase-title">
-      <p className="hero-showcase-label" id="hero-showcase-title">
-        Featured Project
-      </p>
+      <div className="hero-showcase-header">
+        <p className="hero-showcase-label" id="hero-showcase-title">
+          Featured Projects
+        </p>
+        <Link className="hero-showcase-link" to="/projects">
+          <span className="cta-text">All Projects</span>
+        </Link>
+      </div>
       <div
         className="hero-carousel"
         onPointerMove={handlePointerMove}
@@ -140,6 +156,7 @@ const HeroCarousel = () => {
           onSlideChange={(swiper) => {
             const currentIndex = swiper.realIndex;
             const prevIndex = previousActiveIndex.current;
+            setActiveIndex(currentIndex);
 
             // Remove exiting class from all bullets
             const bullets = document.querySelectorAll(
@@ -190,6 +207,20 @@ const HeroCarousel = () => {
             </SwiperSlide>
           ))}
         </Swiper>
+
+        <div className="hero-slide-info" aria-live="polite">
+          <div className="hero-slide-info-panel">
+            <div className="hero-slide-meta">
+              <span>{activeSlide.category}</span>
+              <span className="hero-slide-role-separator">·</span>
+              <span className="hero-slide-role">{activeSlide.role}</span>
+              <span aria-hidden="true">·</span>
+              <span>{activeSlide.year}</span>
+            </div>
+            <h3>{activeSlide.heading}</h3>
+            <p>{activeSlide.description}</p>
+          </div>
+        </div>
 
         {/* Combined Controls: Pagination + Play/Pause Button */}
         <div className="hero-controls">

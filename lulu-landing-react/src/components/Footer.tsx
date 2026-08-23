@@ -1,6 +1,27 @@
+import { useState } from "react";
+import { CopyIcon } from "./icons/StandardIcons";
 import "./Footer.css";
 
+const emailAddress = "destinyihejirika@gmail.com";
+const githubUrl = "https://github.com/lexyd";
+const linkedInUrl = "https://ca.linkedin.com/in/destinyihejirika";
+
 const Footer = () => {
+  const [copyLabel, setCopyLabel] = useState("Copy email");
+  const [isEmailRevealed, setIsEmailRevealed] = useState(false);
+
+  const handleCopyEmail = async () => {
+    setIsEmailRevealed(true);
+
+    try {
+      await navigator.clipboard.writeText(emailAddress);
+      setCopyLabel("Copied");
+      window.setTimeout(() => setCopyLabel("Copy email"), 1800);
+    } catch {
+      setCopyLabel(emailAddress);
+    }
+  };
+
   return (
     <footer className="footer">
       <div className="footer-container">
@@ -9,9 +30,9 @@ const Footer = () => {
         <div className="footer-content">
           <div className="social-icons">
             <a
-              href="mailto:contact@example.com"
+              href={`mailto:${emailAddress}`}
               className="social-icon"
-              aria-label="Email"
+              aria-label="Send email"
             >
               <svg
                 width="24"
@@ -26,39 +47,8 @@ const Footer = () => {
               </svg>
             </a>
 
-            <a href="#" className="social-icon" aria-label="Clipboard">
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
-                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
-              </svg>
-            </a>
-
             <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="social-icon"
-              aria-label="Twitter"
-            >
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-              </svg>
-            </a>
-
-            <a
-              href="https://github.com"
+              href={githubUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="social-icon"
@@ -75,26 +65,47 @@ const Footer = () => {
             </a>
 
             <a
-              href="https://instagram.com"
+              href={linkedInUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="social-icon"
-              aria-label="Instagram"
+              aria-label="LinkedIn"
             >
               <svg
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
+                fill="currentColor"
               >
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                <path d="M20.45 20.45h-3.56v-5.58c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.44-2.13 2.94v5.68H9.35V8.98h3.42v1.57h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.26 2.37 4.26 5.46v6.29zM5.33 7.41a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zm1.78 13.04H3.55V8.98h3.56v11.47z" />
               </svg>
             </a>
           </div>
+        </div>
+
+        <div className="footer-email">
+          {isEmailRevealed ? (
+            <>
+              <a href={`mailto:${emailAddress}`}>{emailAddress}</a>
+              <button
+                type="button"
+                className="social-icon footer-copy-icon"
+                aria-label={copyLabel}
+                onClick={handleCopyEmail}
+              >
+                <CopyIcon />
+                <span className="footer-copy-tooltip">{copyLabel}</span>
+              </button>
+            </>
+          ) : (
+            <button
+              type="button"
+              className="footer-reveal-button"
+              onClick={() => setIsEmailRevealed(true)}
+            >
+              <span className="cta-text">Reveal email</span>
+            </button>
+          )}
         </div>
 
         <div className="footer-description">

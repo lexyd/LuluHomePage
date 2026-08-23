@@ -24,7 +24,7 @@
   max-width: 670px;
   margin: 0;
   color: var(--lulu-gray);
-  font-size: clamp(1.1rem, 1.8vw, 1.32rem);
+  font-size: clamp(1.02rem, 1.5vw, 1.18rem);
   font-weight: 400;
   letter-spacing: -0.02em;
   line-height: 1.55;

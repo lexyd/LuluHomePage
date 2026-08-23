@@ -1,6 +1,6 @@
 export type ProjectGroup =
   | "Systems & Design Engineering"
-  | "Experiments";
+  | "Personal Projects";
 
 export type ProjectDetailMedia = {
   title?: string;
@@ -830,7 +830,7 @@ export const additionalProjects: Project[] = [
       "A motion-rich prototype for editorial media and product discovery.",
     image: "/images/smash-hits.png",
     imageAlt: "Campaign image for a product homepage motion experiment.",
-    group: "Experiments",
+    group: "Personal Projects",
     detail: {
       eyebrow: "Prototype · Motion",
       summary:
@@ -971,7 +971,7 @@ export const additionalProjects: Project[] = [
       "Studies for AI-assisted design execution and project workflows.",
     imageAlt: "Placeholder agentic workflow study preview.",
     visualLabel: "Agent workflow",
-    group: "Experiments",
+    group: "Personal Projects",
     detail: {
       eyebrow: "AI · Experiment",
       summary:
@@ -1107,7 +1107,7 @@ export const additionalProjects: Project[] = [
       "Timing, easing, hover affordances, and transition studies.",
     image: "/images/up-the-energy.jpg",
     imageAlt: "Editorial image for motion system sketches.",
-    group: "Experiments",
+    group: "Personal Projects",
     detail: {
       eyebrow: "Motion · Prototype",
       summary:
@@ -1232,7 +1232,7 @@ export const additionalProjects: Project[] = [
 
 export const projectGroups: ProjectGroup[] = [
   "Systems & Design Engineering",
-  "Experiments",
+  "Personal Projects",
 ];
 
 export const allProjects = [...featuredProjects, ...additionalProjects];
