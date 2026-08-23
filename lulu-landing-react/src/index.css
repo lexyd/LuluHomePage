@@ -71,6 +71,12 @@ a:hover {
   color: var(--lulu-red);
 }
 
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid rgba(211, 19, 52, 0.36);
+  outline-offset: 4px;
+}
+
 button {
   font-family: inherit;
   cursor: pointer;
@@ -144,4 +150,15 @@ video {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--lulu-dark);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
 }

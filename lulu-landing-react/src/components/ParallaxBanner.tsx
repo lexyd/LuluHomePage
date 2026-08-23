@@ -32,22 +32,28 @@ const ParallaxBanner = () => {
   }, []);
 
   useEffect(() => {
-    let timer: ReturnType<typeof setTimeout>;
+    let timer: ReturnType<typeof setTimeout> | undefined;
     if (isHovered) {
-      setIsClosing(false);
       timer = setTimeout(() => {
+        setIsClosing(false);
         setShowText(true);
       }, 620);
     } else if (!isExpanded && showText) {
-      setIsClosing(true);
       timer = setTimeout(() => {
+        setIsClosing(true);
         setShowText(false);
         setIsClosing(false);
       }, 420);
     } else if (!isExpanded && !showText) {
-      setIsClosing(false);
+      timer = setTimeout(() => {
+        setIsClosing(false);
+      }, 0);
     }
-    return () => clearTimeout(timer);
+    return () => {
+      if (timer) {
+        clearTimeout(timer);
+      }
+    };
   }, [isHovered, isExpanded, showText]);
 
   return (
