@@ -2,7 +2,6 @@ import { Link, Navigate, useParams } from "react-router-dom";
 import Footer from "../components/Footer";
 import { ArrowRightIcon } from "../components/icons/StandardIcons";
 import Navigation from "../components/Navigation";
-import ProjectMeta from "../components/projects/ProjectMeta";
 import type { Project, ProjectDetailMedia } from "../data/projects";
 import { allProjects } from "../data/projects";
 import "./ProjectDetailPage.css";
@@ -76,7 +75,6 @@ const ProjectDetailPage = () => {
               </ol>
             </nav>
             <div className="project-detail-intro">
-              <ProjectMeta category={detail.eyebrow} year={project.year} />
               <h1>{project.title}</h1>
               <p>{detail.summary}</p>
             </div>

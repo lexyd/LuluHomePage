@@ -35,11 +35,44 @@
 }
 
 .drop-image img,
-.drop-image video {
+.drop-image video,
+.drop-placeholder {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 320ms var(--ease-in-out);
+}
+
+.drop-placeholder {
+  display: grid;
+  align-content: end;
+  gap: 0.75rem;
+  padding: 1rem;
+  background:
+    linear-gradient(135deg, rgba(34, 34, 34, 0.12), rgba(255, 255, 255, 0.45)),
+    #ececec;
+}
+
+.drop-placeholder-bars {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.45rem;
+  max-width: 9rem;
+}
+
+.drop-placeholder-bars i {
+  min-height: 2.4rem;
+  background: rgba(255, 255, 255, 0.62);
+  border-radius: 8px;
+}
+
+.drop-placeholder strong {
+  max-width: 10rem;
+  color: var(--lulu-dark);
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1;
 }
 
 .drop-image::after {
@@ -87,9 +120,6 @@
 }
 
 .drop-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.32rem;
   color: rgba(34, 34, 34, 0.62);
   font-size: 0.58rem;
   font-weight: 700;
@@ -103,7 +133,7 @@
   color: var(--lulu-dark);
   font-size: clamp(1.25rem, 2.3vw, 1.55rem);
   font-weight: 400;
-  letter-spacing: -1.3px;
+  letter-spacing: 0;
   line-height: 0.98;
 }
 
@@ -124,7 +154,8 @@
 }
 
 .drop-card:hover .drop-image img,
-.drop-card:hover .drop-image video {
+.drop-card:hover .drop-image video,
+.drop-card:hover .drop-placeholder {
   transform: scale(1.025);
 }
 
@@ -163,14 +194,9 @@
     border-radius: 12px;
   }
 
-  .drop-role,
-  .drop-role-separator {
-    display: none;
-  }
-
   .drop-overlay h3 {
     font-size: clamp(1.05rem, 4.4vw, 1.25rem);
-    letter-spacing: -1px;
+    letter-spacing: 0;
   }
 
   .drop-overlay p {
@@ -198,6 +224,7 @@
 @media (prefers-reduced-motion: reduce) {
   .drop-image img,
   .drop-image video,
+  .drop-placeholder,
   .drop-image::after,
   .drop-overlay {
     transition: none;

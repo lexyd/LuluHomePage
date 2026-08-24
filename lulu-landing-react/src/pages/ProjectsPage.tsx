@@ -79,33 +79,40 @@ const ProjectsPage = () => {
                 <ProjectListItem key={project.slug} project={project} selected />
               ))}
             </div>
-            <GitHubContributions />
           </div>
         </section>
 
         <section className="project-groups" aria-label="Project categories">
           <div className="projects-work-rail">
-            {projectGroups.map((group) => {
-              const projects = additionalProjects.filter(
-                (project) => project.group === group
-              );
-              const isPersonal = group === "Personal Projects";
+            {projectGroups
+              .filter((group) => group !== "Systems & Design Engineering")
+              .map((group) => {
+                const projects = additionalProjects.filter(
+                  (project) => project.group === group
+                );
+                const isPersonal = group === "Personal Projects";
 
-              return (
-                <section key={group} className="project-group">
-                  <SectionHeading title={group} />
-                  {isPersonal ? (
-                    <PersonalProjectList projects={personalProjects} />
-                  ) : (
-                    <div className="project-list">
-                      {projects.map((project) => (
-                        <ProjectListItem key={project.slug} project={project} />
-                      ))}
-                    </div>
-                  )}
-                </section>
-              );
-            })}
+                return (
+                  <section key={group} className="project-group">
+                    <SectionHeading title={group} />
+                    {isPersonal ? (
+                      <>
+                        <PersonalProjectList projects={personalProjects} />
+                        <GitHubContributions />
+                      </>
+                    ) : (
+                      <div className="project-list">
+                        {projects.map((project) => (
+                          <ProjectListItem
+                            key={project.slug}
+                            project={project}
+                          />
+                        ))}
+                      </div>
+                    )}
+                  </section>
+                );
+              })}
           </div>
         </section>
       </main>

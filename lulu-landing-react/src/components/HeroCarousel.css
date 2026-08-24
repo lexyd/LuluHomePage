@@ -174,9 +174,6 @@
 }
 
 .hero-slide-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.32rem;
   color: rgba(34, 34, 34, 0.62);
   font-size: 0.58rem;
   font-weight: 700;
@@ -190,8 +187,19 @@
   color: var(--lulu-dark);
   font-size: clamp(1.25rem, 2.3vw, 1.55rem);
   font-weight: 400;
-  letter-spacing: -1.3px;
+  letter-spacing: 0;
   line-height: 0.98;
+}
+
+.hero-slide-info h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.hero-slide-info h3 a:hover,
+.hero-slide-info h3 a:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
 }
 
 .hero-slide-info p {
@@ -519,6 +527,7 @@
   }
 
   .hero-slide-info {
+    right: 0;
     bottom: calc(var(--hero-inset) + 3rem);
     padding: 0.7rem;
   }
@@ -530,14 +539,9 @@
     border-radius: 12px;
   }
 
-  .hero-slide-role,
-  .hero-slide-role-separator {
-    display: none;
-  }
-
   .hero-slide-info h3 {
     font-size: clamp(1.05rem, 4.4vw, 1.25rem);
-    letter-spacing: -1px;
+    letter-spacing: 0;
   }
 
   .hero-slide-info p {
