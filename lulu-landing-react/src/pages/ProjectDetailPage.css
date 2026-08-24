@@ -62,18 +62,18 @@
 }
 
 .project-detail-intro h1 {
-  margin: 0.55rem 0 0.75rem;
-  font-size: clamp(3.25rem, 6.5vw, 5rem);
+  margin: 0 0 0.65rem;
+  font-size: clamp(1.35rem, 2.4vw, 1.85rem);
   font-weight: 400;
-  letter-spacing: -4px;
-  line-height: 0.95;
+  letter-spacing: 0;
+  line-height: 1.14;
 }
 
 .project-detail-intro p {
   max-width: 620px;
   color: var(--lulu-gray);
-  font-size: clamp(1.15rem, 2vw, 1.45rem);
-  line-height: 1.35;
+  font-size: clamp(0.98rem, 1.35vw, 1.08rem);
+  line-height: 1.48;
 }
 
 .project-detail-meta {
@@ -188,10 +188,10 @@
 
 .project-detail-placeholder strong {
   max-width: 16rem;
-  font-size: clamp(1.8rem, 3vw, 2.75rem);
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
   font-weight: 400;
-  letter-spacing: -2px;
-  line-height: 0.95;
+  letter-spacing: 0;
+  line-height: 1.05;
 }
 
 .project-detail-proof {
@@ -212,10 +212,10 @@
 .project-detail-proof-item strong {
   display: block;
   margin-bottom: 0.75rem;
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
   font-weight: 400;
-  letter-spacing: -2px;
-  line-height: 0.95;
+  letter-spacing: 0;
+  line-height: 1.1;
 }
 
 .project-detail-proof-item p {
@@ -246,10 +246,10 @@
 .project-detail-story-copy h2,
 .project-detail-outcome-grid h2 {
   max-width: 720px;
-  font-size: clamp(2rem, 3vw, 3rem);
+  font-size: clamp(1.05rem, 1.45vw, 1.22rem);
   font-weight: 400;
-  letter-spacing: -2px;
-  line-height: 1.08;
+  letter-spacing: 0;
+  line-height: 1.18;
 }
 
 .project-detail-overview p:not(.projects-eyebrow),
@@ -386,7 +386,7 @@
 }
 
 .project-detail-outcome-grid h2 {
-  font-size: clamp(1.65rem, 2.4vw, 2.1rem);
+  font-size: clamp(1.05rem, 1.45vw, 1.22rem);
 }
 
 .project-detail-outcome-grid p {
@@ -425,10 +425,10 @@
 }
 
 .project-detail-next strong {
-  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-size: clamp(1.05rem, 1.45vw, 1.22rem);
   font-weight: 400;
-  letter-spacing: -2px;
-  line-height: 1;
+  letter-spacing: 0;
+  line-height: 1.18;
 }
 
 .project-detail-next .project-arrow {
@@ -471,10 +471,6 @@
 @media (max-width: 768px) {
   .project-detail-rail {
     padding: 5.5rem 1rem 6rem;
-  }
-
-  .project-detail-intro h1 {
-    letter-spacing: -3px;
   }
 
   .project-detail-meta,

@@ -1,6 +1,7 @@
 export type ProjectGroup =
   | "Systems & Design Engineering"
-  | "Experiments";
+  | "Selected Interactions"
+  | "Personal Projects";
 
 export type ProjectDetailMedia = {
   title?: string;
@@ -417,139 +418,621 @@ export const featuredProjects: Project[] = [
   {
     title: "Deska",
     slug: "deska",
-    category: "AI · Product · Design + Engineering",
+    category: "Marketplace · Product · Design + Engineering",
     year: "2026",
     description:
-      "An AI product designed and built from zero to one.",
-    imageAlt: "Placeholder AI product interface composition for Deska.",
-    visualLabel: "AI workspace",
+      "A pre-owned device marketplace for buying quality used phones and selling devices with ease.",
+    imageAlt: "Placeholder pre-owned device marketplace interface composition for Deska.",
+    visualLabel: "Device marketplace",
     featured: true,
     group: "Systems & Design Engineering",
     detail: {
-      eyebrow: "AI · Product · Design + Engineering",
-      summary: "Taking an AI product from early concept into a usable product system.",
+      eyebrow: "Marketplace · Product · Design + Engineering",
+      summary:
+        "A pre-owned device marketplace for buying quality used phones and selling devices with ease.",
       role: "Product Designer + Design Engineer",
       company: "Deska",
-      scope: "AI · Product · Prototyping",
+      scope: "Marketplace · Commerce · Trust",
       heroVisual: {
-        imageAlt: "Placeholder AI workspace interface for Deska.",
-        visualLabel: "Deska workspace",
+        imageAlt: "Placeholder device marketplace interface for Deska.",
+        visualLabel: "Device marketplace",
         caption: "Placeholder visual. Replace with real Deska product screens.",
       },
       proofPoints: [
         {
-          label: "Zero To One",
+          label: "Buy pre-owned",
           description:
-            "Early product structure, interaction model, and interface direction.",
+            "A product surface for finding quality pre-owned devices with clear condition and pricing details.",
         },
         {
-          label: "AI Workspace",
+          label: "Sell with ease",
           description:
-            "Patterns for prompting, outputs, review, and continued work.",
+            "A guided path for people to sell devices they no longer use.",
         },
         {
-          label: "Buildable Prototype",
+          label: "Trust signals",
           description:
-            "Code-driven exploration to test the product experience quickly.",
+            "Inspection, battery, and IMEI checks help make second-hand device buying feel safer.",
         },
       ],
       overview: {
         heading:
-          "The work was less about adding AI and more about giving it a useful workspace.",
+          "Deska turns second-hand device buying into a clearer, more trusted marketplace experience.",
         paragraphs: [
-          "Deska started from the question of how an AI product should help someone move from intent to structured output without losing control of the work.",
-          "The design engineering effort focused on translating product ideas into interactive surfaces, visible system states, and reusable behaviours.",
+          "Deska helps people buy quality pre-owned phones or sell the devices they no longer use. The live page positions the product around clear listings, early access, and a guided process for buying and selling.",
+          "The design challenge is trust. Second-hand commerce needs condition details, pricing clarity, device checks, and enough transparency for people to feel comfortable acting.",
         ],
       },
       ownership: [
-        "Product concepting",
-        "AI interaction model",
-        "Prototype implementation",
-        "Interface states",
-        "Responsive structure",
-        "Product storytelling",
+        "Marketplace product direction",
+        "Listing experience",
+        "Trust and verification cues",
+        "Buying and selling flows",
+        "Responsive product structure",
+        "Sustainability storytelling",
       ],
       sections: [
         {
-          title: "Defining the AI workspace",
+          title: "Designing for device trust",
           statement:
-            "The product needed a place where input, output, and iteration could live together.",
+            "A marketplace for used devices has to make quality visible before someone is ready to buy.",
           paragraphs: [
-            "The interface model centered on keeping prompts, generated artifacts, and user decisions visible enough to support continued refinement.",
+            "Deska emphasizes inspected devices, battery checks, and IMEI verification so trust is part of the product experience, not buried in policy text.",
           ],
           layout: "media-text",
           media: [
             {
-              imageAlt: "Placeholder Deska workspace structure.",
-              visualLabel: "Workspace",
+              imageAlt: "Placeholder Deska inspected device listing.",
+              visualLabel: "Device checks",
             },
           ],
         },
         {
-          title: "Designing for review",
+          title: "From listing to confidence",
           statement:
-            "Generated work becomes useful when people can inspect, adjust, and trust it.",
+            "A good listing needs to answer the buyer's questions before they become objections.",
           paragraphs: [
-            "The product patterns support review states, editable outputs, and clear handoff between automated suggestions and human judgement.",
+            "The product story is built around clear device details, condition notes, storage and color, pricing, and sale status. The first drop being sold out gives the marketplace a useful proof point for demand.",
           ],
           layout: "detail-crops",
           media: [
             {
-              imageAlt: "Placeholder Deska review state.",
-              visualLabel: "Review",
+              imageAlt: "Placeholder Deska device condition detail.",
+              visualLabel: "Condition",
             },
             {
-              imageAlt: "Placeholder Deska edit state.",
-              visualLabel: "Edit",
+              imageAlt: "Placeholder Deska battery health detail.",
+              visualLabel: "Battery",
             },
             {
-              imageAlt: "Placeholder Deska handoff state.",
-              visualLabel: "Handoff",
+              imageAlt: "Placeholder Deska IMEI verification detail.",
+              visualLabel: "IMEI",
             },
           ],
         },
         {
-          title: "Prototyping the behaviour",
+          title: "A second life for better devices",
           statement:
-            "The design had to be felt in motion, not only described in static frames.",
+            "The sustainability story gives the marketplace a reason to exist beyond price.",
           paragraphs: [
-            "Interaction timing, loading states, and response transitions were explored directly in code so the product could be evaluated under more realistic conditions.",
+            "The page frames pre-owned devices as devices worth keeping. Extending a device lifespan helps reduce unnecessary waste and connects the buying experience to a larger environmental message.",
           ],
           layout: "text-media",
           media: [
             {
-              imageAlt: "Placeholder Deska interactive prototype state.",
-              visualLabel: "Prototype",
-              caption: "Placeholder prototype visual.",
+              imageAlt: "Placeholder Deska sustainability proof point.",
+              visualLabel: "Second life",
+              caption: "Placeholder visual. Replace with real Deska sustainability or listing screens.",
             },
           ],
         },
       ],
       outcomes: [
         {
-          title: "Clearer product shape",
+          title: "Clearer marketplace positioning",
           description:
-            "A defined workspace model for AI-assisted creation and review.",
+            "The product now reads as a trusted pre-owned device marketplace.",
         },
         {
-          title: "Testable interactions",
+          title: "Stronger trust model",
           description:
-            "Prototype behaviours that made product decisions easier to evaluate.",
+            "Inspection, battery, and IMEI checks give the experience concrete credibility cues.",
         },
         {
-          title: "Reusable AI states",
+          title: "Better sustainability story",
           description:
-            "Patterns for loading, response, review, editing, and handoff.",
+            "The product connects second-hand commerce to reducing device waste.",
         },
       ],
       reflection:
-        "AI interfaces need restraint. The more capable the system feels, the more important it becomes to show state, control, and context clearly.",
+        "Marketplace design is mostly trust design. The interface has to make condition, value, and risk legible before people feel ready to act.",
       nextProjectSlug: "ai-interaction-patterns",
     },
   },
 ];
 
 export const additionalProjects: Project[] = [
+  {
+    title: "Immersive Product Carousel",
+    slug: "immersive-product-carousel",
+    category: "Lululemon · Commerce · Motion",
+    year: "2026",
+    description:
+      "Making product discovery feel fluid, tactile, and intentional.",
+    image: "/images/game-set-unmatched-gear.jpg",
+    imageAlt: "lululemon tennis campaign image used for an immersive product carousel.",
+    group: "Selected Interactions",
+    detail: {
+      eyebrow: "Lululemon · Commerce · Motion",
+      summary:
+        "Making product discovery feel fluid, tactile, and intentional.",
+      role: "Product Design / Interaction Design",
+      company: "lululemon",
+      scope: "Commerce · Interaction · Motion",
+      heroVisual: {
+        image: "/images/game-set-unmatched-gear.jpg",
+        imageAlt:
+          "lululemon tennis campaign image used for an immersive product carousel.",
+        visualLabel: "Product carousel",
+        caption:
+          "Uses existing lululemon campaign imagery. The live carousel runs on the homepage.",
+      },
+      proofPoints: [
+        {
+          label: "Motion craft",
+          description:
+            "Transitions were shaped to feel fluid without making the carousel hard to control.",
+        },
+        {
+          label: "Commerce clarity",
+          description:
+            "The interaction keeps product discovery expressive while preserving orientation and intent.",
+        },
+        {
+          label: "Accessible control",
+          description:
+            "Pagination and pause/play controls remain independent, visible, and keyboard reachable.",
+        },
+      ],
+      overview: {
+        heading:
+          "Carousels are familiar, but familiarity does not automatically make them feel good.",
+        paragraphs: [
+          "The goal was to create a featured commerce moment expressive enough to carry lululemon's editorial imagery while keeping navigation obvious, controllable, and accessible.",
+          "The work focused on pacing, slide continuity, clear state, and controls that do not fight the project-card interaction around them.",
+        ],
+      },
+      ownership: [
+        "Interaction direction",
+        "Carousel behaviour",
+        "Motion timing",
+        "Pagination states",
+        "Pause/play control",
+        "Responsive QA",
+      ],
+      sections: [
+        {
+          title: "Moving between stories",
+          statement:
+            "The transition needed to feel premium without becoming theatrical.",
+          paragraphs: [
+            "Slide movement, image scale, and timing were kept restrained so the carousel feels tactile while still letting the product imagery lead.",
+          ],
+          layout: "media-text",
+          media: [
+            {
+              image: "/images/game-set-unmatched-gear.jpg",
+              imageAlt: "lululemon tennis campaign carousel slide.",
+              visualLabel: "Slide motion",
+            },
+          ],
+        },
+        {
+          title: "Knowing where you are",
+          statement:
+            "Numbered pagination makes the position explicit without adding heavy controls.",
+          paragraphs: [
+            "The interaction uses simple 1, 2, 3 controls with a separate pause/play affordance so users can move through the carousel or stop motion when they need to.",
+          ],
+          layout: "two-up",
+          media: [
+            {
+              imageAlt: "Placeholder numbered pagination interaction.",
+              visualLabel: "1 2 3",
+            },
+            {
+              imageAlt: "Placeholder pause and play carousel control.",
+              visualLabel: "Pause",
+            },
+          ],
+        },
+        {
+          title: "Keeping controls separate from navigation",
+          statement:
+            "The carousel controls should operate the carousel, not accidentally trigger project navigation.",
+          paragraphs: [
+            "The project information and carousel controls are separate interactive regions. That keeps pointer, keyboard, and touch behaviour predictable.",
+          ],
+          layout: "text-media",
+          media: [
+            {
+              imageAlt: "Placeholder control separation diagram.",
+              visualLabel: "Controls",
+            },
+          ],
+        },
+      ],
+      outcomes: [
+        {
+          title: "Image-first feature",
+          description:
+            "The carousel lets campaign visuals lead while information stays available on hover and focus.",
+        },
+        {
+          title: "Clearer orientation",
+          description:
+            "Numbered controls help visitors understand where they are in the sequence.",
+        },
+        {
+          title: "Better interaction boundaries",
+          description:
+            "Carousel controls and project navigation no longer compete for the same click area.",
+        },
+      ],
+      reflection:
+        "Small motion decisions carry a lot of brand feeling. The best carousel is not the loudest one; it is the one that feels easy to control.",
+      nextProjectSlug: "shop-the-look",
+    },
+  },
+  {
+    title: "Shop the Look",
+    slug: "shop-the-look",
+    category: "Lululemon · Commerce · Interaction",
+    year: "2026",
+    description:
+      "Turning editorial inspiration into an intuitive path to purchase.",
+    image: "/images/lululemon-soho-store-opening.png",
+    imageAlt: "lululemon retail experience image used for Shop the Look.",
+    group: "Selected Interactions",
+    detail: {
+      eyebrow: "Lululemon · Commerce · Interaction",
+      summary:
+        "Turning editorial inspiration into an intuitive path to purchase.",
+      role: "Product Design / Interaction Design",
+      company: "lululemon",
+      scope: "Commerce · UI Craft · Interaction",
+      heroVisual: {
+        image: "/images/lululemon-soho-store-opening.png",
+        imageAlt: "lululemon retail experience image used for Shop the Look.",
+        visualLabel: "Shop the Look",
+        caption:
+          "Existing lululemon imagery used as the current portfolio visual.",
+      },
+      proofPoints: [
+        {
+          label: "Editorial to purchase",
+          description:
+            "The pattern connects inspiration-led browsing to a clear next step.",
+        },
+        {
+          label: "Reduced friction",
+          description:
+            "The interaction is designed to make product context easier to act on.",
+        },
+        {
+          label: "Responsive behaviour",
+          description:
+            "The idea preserves product hierarchy across desktop and touch layouts.",
+        },
+      ],
+      overview: {
+        heading:
+          "The best commerce interactions reduce the distance between inspiration and action.",
+        paragraphs: [
+          "Shop the Look is a focused interaction study around turning editorial imagery into a practical path to purchase.",
+          "The work is less about adding more UI and more about deciding what should appear, when it should appear, and how quickly a shopper can understand the next step.",
+        ],
+      },
+      ownership: [
+        "Commerce interaction",
+        "Hover reveal",
+        "Product context",
+        "Responsive behaviour",
+        "Visual hierarchy",
+        "Interaction QA",
+      ],
+      sections: [
+        {
+          title: "Making inspiration actionable",
+          statement:
+            "The image should still feel editorial, but the product path needs to be obvious.",
+          paragraphs: [
+            "The interaction balances visual taste with practical commerce cues so the interface can support discovery without becoming cluttered.",
+          ],
+          layout: "media-text",
+          media: [
+            {
+              image: "/images/lululemon-soho-store-opening.png",
+              imageAlt: "lululemon editorial commerce image.",
+              visualLabel: "Editorial commerce",
+            },
+          ],
+        },
+        {
+          title: "Revealing just enough",
+          statement:
+            "Hover and focus states should clarify interaction, not cover the work.",
+          paragraphs: [
+            "The reveal pattern keeps the image-first default and introduces only the context needed to understand the project.",
+          ],
+          layout: "two-up",
+          media: [
+            {
+              imageAlt: "Placeholder default Shop the Look card.",
+              visualLabel: "Default",
+            },
+            {
+              imageAlt: "Placeholder Shop the Look hover reveal.",
+              visualLabel: "Reveal",
+            },
+          ],
+        },
+      ],
+      outcomes: [
+        {
+          title: "Clearer product path",
+          description:
+            "The interaction gives editorial content a direct commerce purpose.",
+        },
+        {
+          title: "Less visual noise",
+          description:
+            "The default state stays image-led while interaction details remain discoverable.",
+        },
+        {
+          title: "Reusable reveal logic",
+          description:
+            "The pattern can extend to other commerce cards and campaign surfaces.",
+        },
+      ],
+      reflection:
+        "Commerce craft often lives in the smallest transitions between wanting something and knowing what to do next.",
+      nextProjectSlug: "gradient-chat-input",
+    },
+  },
+  {
+    title: "Gradient Chat Input",
+    slug: "gradient-chat-input",
+    category: "Interaction · AI",
+    year: "2026",
+    description:
+      "A compact input pattern for making AI prompts feel responsive and clear.",
+    imageAlt: "Placeholder gradient chat input interaction preview.",
+    visualLabel: "Chat input",
+    group: "Selected Interactions",
+    detail: {
+      eyebrow: "Interaction · AI",
+      summary:
+        "A compact input pattern for making AI prompts feel responsive and clear.",
+      role: "Design Engineer",
+      company: "Interaction study",
+      scope: "AI · Motion · Input States",
+      heroVisual: {
+        imageAlt: "Placeholder gradient chat input interaction preview.",
+        visualLabel: "Gradient input",
+        caption: "Placeholder visual. Replace with the real input prototype.",
+      },
+      proofPoints: [
+        {
+          label: "State communication",
+          description:
+            "The input communicates readiness, focus, and system activity through small visual changes.",
+        },
+        {
+          label: "Motion restraint",
+          description:
+            "Motion supports feedback without making the input feel distracting.",
+        },
+        {
+          label: "AI clarity",
+          description:
+            "The pattern helps users understand when the system is listening, thinking, or ready.",
+        },
+      ],
+      overview: {
+        heading:
+          "AI input fields need to feel alive without becoming decorative.",
+        paragraphs: [
+          "This interaction study explores how a chat input can communicate state through gradient, focus, and motion while staying usable.",
+          "The goal is to give the interface enough feedback to feel responsive without adding visual noise to a core writing surface.",
+        ],
+      },
+      ownership: [
+        "Input states",
+        "Motion timing",
+        "Focus behaviour",
+        "Reduced motion",
+        "Accessibility",
+        "Prototype implementation",
+      ],
+      sections: [
+        {
+          title: "Designing feedback into the input",
+          statement:
+            "The input needed to show state at the moment users are making decisions.",
+          paragraphs: [
+            "Focus, active, loading, and response states were treated as part of the same interaction language rather than separate visual treatments.",
+          ],
+          layout: "two-up",
+          media: [
+            {
+              imageAlt: "Placeholder focused gradient input state.",
+              visualLabel: "Focus",
+            },
+            {
+              imageAlt: "Placeholder active gradient input state.",
+              visualLabel: "Active",
+            },
+          ],
+        },
+        {
+          title: "Motion as system feedback",
+          statement:
+            "The animation should explain state, not decorate the field.",
+          paragraphs: [
+            "Timing and easing were kept quiet so the input can indicate progress without making the user wait on the animation.",
+          ],
+          layout: "media-text",
+          media: [
+            {
+              imageAlt: "Placeholder gradient input motion sequence.",
+              visualLabel: "Motion",
+            },
+          ],
+        },
+      ],
+      outcomes: [
+        {
+          title: "Clearer AI state",
+          description:
+            "The input gives users a better sense of what the system is doing.",
+        },
+        {
+          title: "Reusable input behaviour",
+          description:
+            "States can map into a broader AI interaction system.",
+        },
+        {
+          title: "Reduced-motion support",
+          description:
+            "The pattern can simplify movement while preserving state clarity.",
+        },
+      ],
+      reflection:
+        "A prompt input is a small surface with a large responsibility. It sets the tone for the entire AI interaction.",
+      nextProjectSlug: "floating-entity-navigation",
+    },
+  },
+  {
+    title: "Floating Entity Navigation",
+    slug: "floating-entity-navigation",
+    category: "Navigation · Prototype",
+    year: "2026",
+    description:
+      "A floating navigation pattern for keeping entity context close to action.",
+    imageAlt: "Placeholder floating entity navigation interaction preview.",
+    visualLabel: "Entity nav",
+    group: "Selected Interactions",
+    detail: {
+      eyebrow: "Navigation · Prototype",
+      summary:
+        "A floating navigation pattern for keeping entity context close to action.",
+      role: "Design Engineer",
+      company: "Interaction study",
+      scope: "Navigation · Context · Responsive UI",
+      heroVisual: {
+        imageAlt: "Placeholder floating entity navigation interaction preview.",
+        visualLabel: "Entity nav",
+        caption: "Placeholder visual. Replace with the real navigation prototype.",
+      },
+      proofPoints: [
+        {
+          label: "Context retention",
+          description:
+            "The pattern keeps the current entity visible while users move through related actions.",
+        },
+        {
+          label: "Responsive control",
+          description:
+            "The navigation adapts between larger product surfaces and constrained mobile layouts.",
+        },
+        {
+          label: "Interaction clarity",
+          description:
+            "Active states and motion help users understand where they are without heavy chrome.",
+        },
+      ],
+      overview: {
+        heading:
+          "Navigation is strongest when it preserves context instead of just moving people around.",
+        paragraphs: [
+          "Floating Entity Navigation explores how product navigation can stay close to the object a user is working on.",
+          "The study focuses on active state, progressive disclosure, responsive behaviour, and the line between helpful persistence and visual clutter.",
+        ],
+      },
+      ownership: [
+        "Navigation model",
+        "Active states",
+        "Responsive behaviour",
+        "Motion affordances",
+        "Prototype build",
+        "Accessibility checks",
+      ],
+      sections: [
+        {
+          title: "Keeping the object in view",
+          statement:
+            "The navigation needed to follow the user's context without stealing focus from the task.",
+          paragraphs: [
+            "The pattern treats the active entity as the anchor, then exposes related actions around it in a compact, persistent surface.",
+          ],
+          layout: "media-text",
+          media: [
+            {
+              imageAlt: "Placeholder floating entity navigation default state.",
+              visualLabel: "Context",
+            },
+          ],
+        },
+        {
+          title: "Adapting across screens",
+          statement:
+            "The same navigation idea needed to survive different screen sizes and input types.",
+          paragraphs: [
+            "Responsive behaviour focuses on preserving priority, tap targets, and orientation as the available space changes.",
+          ],
+          layout: "device-comparison",
+          media: [
+            {
+              title: "Desktop",
+              imageAlt: "Placeholder desktop entity navigation.",
+              visualLabel: "Desktop",
+            },
+            {
+              title: "Tablet",
+              imageAlt: "Placeholder tablet entity navigation.",
+              visualLabel: "Tablet",
+            },
+            {
+              title: "Mobile",
+              imageAlt: "Placeholder mobile entity navigation.",
+              visualLabel: "Mobile",
+            },
+          ],
+        },
+      ],
+      outcomes: [
+        {
+          title: "Stronger wayfinding",
+          description:
+            "The pattern makes current context easier to understand at a glance.",
+        },
+        {
+          title: "Cleaner action access",
+          description:
+            "Related actions stay nearby without requiring a heavy sidebar.",
+        },
+        {
+          title: "Responsive navigation logic",
+          description:
+            "The model can adapt to constrained layouts while keeping orientation intact.",
+        },
+      ],
+      reflection:
+        "Good navigation is not only about destinations. It is about helping people keep their place while they work.",
+      nextProjectSlug: "symbiotique",
+    },
+  },
   {
     title: "AI Interaction Patterns",
     slug: "ai-interaction-patterns",
@@ -830,7 +1313,7 @@ export const additionalProjects: Project[] = [
       "A motion-rich prototype for editorial media and product discovery.",
     image: "/images/smash-hits.png",
     imageAlt: "Campaign image for a product homepage motion experiment.",
-    group: "Experiments",
+    group: "Personal Projects",
     detail: {
       eyebrow: "Prototype · Motion",
       summary:
@@ -971,7 +1454,7 @@ export const additionalProjects: Project[] = [
       "Studies for AI-assisted design execution and project workflows.",
     imageAlt: "Placeholder agentic workflow study preview.",
     visualLabel: "Agent workflow",
-    group: "Experiments",
+    group: "Personal Projects",
     detail: {
       eyebrow: "AI · Experiment",
       summary:
@@ -1107,7 +1590,7 @@ export const additionalProjects: Project[] = [
       "Timing, easing, hover affordances, and transition studies.",
     image: "/images/up-the-energy.jpg",
     imageAlt: "Editorial image for motion system sketches.",
-    group: "Experiments",
+    group: "Personal Projects",
     detail: {
       eyebrow: "Motion · Prototype",
       summary:
@@ -1232,7 +1715,8 @@ export const additionalProjects: Project[] = [
 
 export const projectGroups: ProjectGroup[] = [
   "Systems & Design Engineering",
-  "Experiments",
+  "Selected Interactions",
+  "Personal Projects",
 ];
 
 export const allProjects = [...featuredProjects, ...additionalProjects];

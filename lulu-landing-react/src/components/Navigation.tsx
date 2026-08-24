@@ -63,7 +63,11 @@ const Navigation = () => {
             </svg>
             <span className="nav-link-text">Videos</span>
           </NavLink>
-          <NavLink to="/contact" className="nav-link">
+          <a
+            href="mailto:destinyihejirika@gmail.com"
+            className="nav-link"
+            aria-label="Email Destiny about hiring"
+          >
             <svg
               width="16"
               height="16"
@@ -75,8 +79,8 @@ const Navigation = () => {
               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
               <polyline points="22,6 12,13 2,6" />
             </svg>
-            <span className="nav-link-text">Contact</span>
-          </NavLink>
+            <span className="nav-link-text">Hire me</span>
+          </a>
         </div>
       </div>
     </nav>

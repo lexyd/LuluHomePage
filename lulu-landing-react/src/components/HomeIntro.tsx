@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-import { ArrowRightIcon } from "./icons/StandardIcons";
 import "./HomeIntro.css";
 
 const HomeIntro = () => {
@@ -7,16 +5,8 @@ const HomeIntro = () => {
     <section className="home-intro" aria-labelledby="home-intro-title">
       <div className="home-intro-rail">
         <h1 id="home-intro-title">
-          Designing and building digital products that feel as good as they
-          work.
+          Designing and Building digital experiences that feel human.
         </h1>
-
-        <div className="home-intro-meta">
-          <p>
-            Product designer and design engineer working across systems,
-            interfaces, and AI experiences.
-          </p>
-        </div>
 
         <div className="home-intro-today">
           <h2>Today</h2>
@@ -26,10 +16,6 @@ const HomeIntro = () => {
             systems, and close the gap between intended craft and shipped
             experience.
           </p>
-          <Link to="/projects">
-            View selected projects
-            <ArrowRightIcon className="home-intro-icon" />
-          </Link>
         </div>
       </div>
     </section>

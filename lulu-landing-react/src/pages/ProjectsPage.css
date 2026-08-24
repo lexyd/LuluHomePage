@@ -42,7 +42,7 @@
   margin: 0.75rem 0 1rem;
   font-size: clamp(3.5rem, 7vw, 5.5rem);
   font-weight: 400;
-  letter-spacing: -4px;
+  letter-spacing: 0;
   line-height: 0.94;
 }
 
@@ -64,21 +64,22 @@
 }
 
 .projects-section-heading {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
 }
 
 .projects-section-heading h2 {
-  max-width: 820px;
-  font-size: clamp(2rem, 3vw, 3rem);
+  max-width: 720px;
+  font-size: clamp(1.35rem, 2vw, 1.75rem);
   font-weight: 400;
-  letter-spacing: -2px;
-  line-height: 1.1;
+  letter-spacing: 0;
+  line-height: 1.18;
 }
 
 .projects-section-heading p:not(.projects-eyebrow) {
+  max-width: 620px;
   color: var(--lulu-gray);
-  font-size: 1rem;
-  line-height: 1.5;
+  font-size: 0.95rem;
+  line-height: 1.45;
 }
 
 .featured-project-grid {
@@ -140,10 +141,10 @@
 .featured-project-copy h3,
 .project-list-copy h3 {
   margin: 0.35rem 0 0.45rem;
-  font-size: clamp(1.65rem, 2.35vw, 2.45rem);
+  font-size: clamp(1.2rem, 1.7vw, 1.55rem);
   font-weight: 400;
-  letter-spacing: -2px;
-  line-height: 1;
+  letter-spacing: 0;
+  line-height: 1.12;
 }
 
 .featured-project-copy p,
@@ -322,7 +323,6 @@
 
 .project-group {
   padding: 2.75rem 0;
-  border-top: 1px solid rgba(34, 34, 34, 0.1);
 }
 
 .project-list {
@@ -366,7 +366,7 @@
 }
 
 .project-list-item--selected .project-list-copy h3 {
-  font-size: clamp(1.65rem, 2.2vw, 2.05rem);
+  font-size: clamp(1.18rem, 1.65vw, 1.45rem);
 }
 
 .project-list-item--selected .project-list-copy p {
@@ -393,7 +393,7 @@
 }
 
 .project-list-copy h3 {
-  font-size: clamp(1.55rem, 2.3vw, 1.95rem);
+  font-size: clamp(1.08rem, 1.55vw, 1.35rem);
 }
 
 .project-list-copy p {
@@ -416,6 +416,60 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.personal-project-list {
+  display: grid;
+  gap: 0.45rem;
+  max-width: 560px;
+}
+
+.personal-project-item {
+  display: grid;
+  gap: 0.18rem;
+  width: 100%;
+  max-width: 100%;
+  padding: 0.85rem 0.9rem;
+  color: var(--lulu-dark);
+  border-radius: 12px;
+  text-decoration: none;
+  transition:
+    background 220ms var(--ease-in-out),
+    transform 220ms var(--ease-in-out);
+}
+
+.personal-project-title {
+  color: rgba(34, 34, 34, 0.88);
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: 1.35;
+  text-decoration: none;
+  transition:
+    color 180ms var(--ease-in-out),
+    opacity 180ms var(--ease-in-out);
+}
+
+.personal-project-description {
+  color: rgba(34, 34, 34, 0.58);
+  font-size: 0.9rem;
+  line-height: 1.4;
+  transition: color 180ms var(--ease-in-out);
+}
+
+.personal-project-item:hover .personal-project-title,
+.personal-project-item:focus-visible .personal-project-title {
+  color: var(--lulu-dark);
+}
+
+.personal-project-item:hover,
+.personal-project-item:focus-visible {
+  background: rgba(245, 245, 245, 0.82);
+  transform: translateX(0.18rem);
+}
+
+.personal-project-item:hover .personal-project-description,
+.personal-project-item:focus-visible .personal-project-description {
+  color: rgba(34, 34, 34, 0.72);
+}
+
 .project-list-item--compact {
   min-height: 10.5rem;
   grid-template-columns: minmax(0, 1fr);
@@ -433,8 +487,8 @@
 }
 
 .project-list-item--compact .project-list-copy h3 {
-  font-size: clamp(1.35rem, 1.85vw, 1.55rem);
-  letter-spacing: -2px;
+  font-size: clamp(1.05rem, 1.55vw, 1.25rem);
+  letter-spacing: 0;
 }
 
 .project-list-item--compact .project-list-copy p {
@@ -494,9 +548,9 @@
 
 .project-visual-placeholder strong {
   max-width: 12rem;
-  font-size: clamp(1.35rem, 2.5vw, 2rem);
+  font-size: clamp(1.1rem, 2vw, 1.55rem);
   font-weight: 400;
-  letter-spacing: -2px;
+  letter-spacing: 0;
   line-height: 0.95;
 }
 
@@ -509,7 +563,7 @@
 }
 
 .featured-project--wide .project-visual-placeholder strong {
-  font-size: clamp(1.8rem, 3vw, 2.75rem);
+  font-size: clamp(1.35rem, 2.4vw, 2rem);
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -634,8 +688,8 @@
 
   .featured-project-copy h3,
   .project-list-copy h3 {
-    font-size: clamp(1.35rem, 7vw, 1.85rem);
-    letter-spacing: -1.5px;
+    font-size: clamp(1.12rem, 6vw, 1.45rem);
+    letter-spacing: 0;
   }
 
   .featured-project-copy p,

@@ -8,15 +8,15 @@ const youtubeUrl = "https://www.youtube.com/@Designwithdestiny";
 const values = [
   {
     title: "Craft",
-    copy: "Taste, interaction, motion, and the details that make a product feel considered.",
+    copy: "Taste, interaction, motion, and the small details that make an experience feel considered.",
   },
   {
     title: "Accessibility",
-    copy: "Good products should work for more people, not fewer. I bring accessibility into my product and systems work, while continuing to deepen that expertise professionally.",
+    copy: "Good products should work for more people, not fewer. I try to build accessibility into the product from the start, not add it at the end.",
   },
   {
     title: "Teaching",
-    copy: "I love teaching and mentoring. Through YouTube, I share what I've learned about design, systems, tools, and building products.",
+    copy: "I love sharing what I learn. Through mentoring and YouTube, I help other designers understand the tools, systems, and thinking behind the work.",
     link: youtubeUrl,
   },
 ];
@@ -33,15 +33,16 @@ const AboutPage = () => {
             <div className="about-copy">
               <p>
                 I'm Destiny, a product designer and design engineer working
-                across design, technology, and systems. I care about how things
-                look, how they work, and how they actually get built.
+                across design, technology, and systems. I care about how
+                things are made, how they feel to use, and the details that
+                turn something functional into something people actually enjoy.
               </p>
 
               <p>
-                Before product design, I spent years building software. But I
-                kept finding myself wanting to change the experiences I was
-                being asked to implement - the interactions, the details, and
-                how the product actually felt.
+                I started on the technical side, spending years building
+                software. But the more I built, the more I found myself wanting
+                to change the experiences I was being asked to implement - the
+                interactions, the details, and how the product actually felt.
               </p>
 
               <blockquote>
@@ -53,34 +54,41 @@ const AboutPage = () => {
               </blockquote>
 
               <p>
-                So I started learning design. That became the intersection I
-                work in today: shaping the experience, making the design
+                So I learned design. Today, that intersection is where I'm most
+                comfortable: shaping the experience, making the design
                 decisions, and going into the code when I need to prototype,
                 tweak, or bring an idea to life.
               </p>
 
-              <h2>What matters to me</h2>
+              <p className="about-bridge">
+                That way of working has shaped what I care about most.
+              </p>
 
-              {values.map((value) => (
-                <section className="about-note" key={value.title}>
-                  <h3>{value.title}</h3>
-                  <p>{value.copy}</p>
-                  {value.link ? (
-                    <a href={value.link} target="_blank" rel="noreferrer">
-                      Watch on YouTube
-                      <ExternalLinkIcon className="about-link-icon" />
-                    </a>
-                  ) : null}
-                </section>
-              ))}
+              <section
+                className="about-values"
+                aria-labelledby="about-values-title"
+              >
+                <h2 id="about-values-title">What matters to me</h2>
+                <div className="about-values-grid">
+                  {values.map((value) => (
+                    <section className="about-note" key={value.title}>
+                      <h3>{value.title}</h3>
+                      <p>{value.copy}</p>
+                      {value.link ? (
+                        <a href={value.link} target="_blank" rel="noreferrer">
+                          Watch on YouTube
+                          <ExternalLinkIcon className="about-link-icon" />
+                        </a>
+                      ) : null}
+                    </section>
+                  ))}
+                </div>
+              </section>
 
-              <figure className="about-running-figure">
-                <img
-                  src="/images/about-running.jpg"
-                  alt="Destiny running outdoors during training."
-                  data-pin-nopin="true"
-                />
-              </figure>
+              <p className="about-bridge">
+                That curiosity doesn't really switch off when I close the
+                laptop.
+              </p>
 
               <h2>Away from the screen</h2>
 
@@ -99,7 +107,12 @@ const AboutPage = () => {
               </p>
 
               <h2>Always learning. Always building.</h2>
-              <p>I'm happiest when I'm making progress.</p>
+
+              <p>
+                Whether it's a product, a skill, a story, or the next finish
+                line, I'm happiest when I'm making something better than it was
+                yesterday.
+              </p>
             </div>
           </div>
         </section>

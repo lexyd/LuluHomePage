@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import type { PointerEvent } from "react";
+import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
@@ -9,40 +10,40 @@ interface Slide {
   id: number;
   type: "video" | "image";
   src: string;
-  heading: string;
-  subheading?: string;
-  cta: {
-    label: string;
-    url: string;
-  };
+  alt: string;
 }
+
+const featuredProject = {
+  href: "/projects/immersive-product-carousel",
+  metadata: "LULULEMON · COMMERCE · MOTION",
+  title: "Immersive Product Carousel",
+  description: "Making product discovery feel fluid, tactile, and intentional.",
+};
 
 const slides: Slide[] = [
   {
     id: 1,
     type: "video",
     src: "/videos/play-like-its-personal.mp4",
-    heading: "Engineering Design. At Scale",
-    cta: { label: "View Case Studies", url: "#" },
+    alt: "lululemon product motion clip for an immersive commerce carousel.",
   },
   {
     id: 2,
     type: "image",
     src: "/images/game-set-unmatched-gear.jpg",
-    heading: "Design Meets Engineering.",
-    cta: { label: "Explore Components", url: "#" },
+    alt: "lululemon tennis campaign image for product discovery.",
   },
   {
     id: 3,
     type: "video",
     src: "/videos/slnsh-x-lululemon.mp4",
-    heading: "Design Engineer",
-    cta: { label: "About Me", url: "#" },
+    alt: "Saul Nash x lululemon motion clip for product storytelling.",
   },
 ];
 
 const HeroCarousel = () => {
   const [isPlaying, setIsPlaying] = useState(true);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const swiperRef = useRef<SwiperType | null>(null);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const previousActiveIndex = useRef<number>(0);
@@ -90,8 +91,30 @@ const HeroCarousel = () => {
   };
 
   useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    const syncMotionPreference = () => {
+      const shouldReduce = mediaQuery.matches;
+      setPrefersReducedMotion(shouldReduce);
+
+      if (shouldReduce) {
+        swiperRef.current?.autoplay?.stop();
+        videoRefs.current.forEach((video) => video?.pause());
+        setIsPlaying(false);
+      }
+    };
+
+    syncMotionPreference();
+    mediaQuery.addEventListener("change", syncMotionPreference);
+
+    return () => {
+      mediaQuery.removeEventListener("change", syncMotionPreference);
+    };
+  }, []);
+
+  useEffect(() => {
     // Sync video playback with initial state
-    if (isPlaying) {
+    if (isPlaying && !prefersReducedMotion) {
       videoRefs.current.forEach((video) => {
         if (video) {
           video.play().catch(() => {
@@ -100,13 +123,18 @@ const HeroCarousel = () => {
         }
       });
     }
-  }, [isPlaying]);
+  }, [isPlaying, prefersReducedMotion]);
 
   return (
     <section className="hero-showcase" aria-labelledby="hero-showcase-title">
-      <p className="hero-showcase-label" id="hero-showcase-title">
-        Featured Project
-      </p>
+      <div className="hero-showcase-header">
+        <p className="hero-showcase-label" id="hero-showcase-title">
+          Featured Projects
+        </p>
+        <Link className="hero-showcase-link" to="/projects">
+          <span className="cta-text">All Projects</span>
+        </Link>
+      </div>
       <div
         className="hero-carousel"
         onPointerMove={handlePointerMove}
@@ -127,11 +155,15 @@ const HeroCarousel = () => {
               }</span></span>`;
             },
           }}
-          autoplay={{
-            delay: 5000,
-            disableOnInteraction: false,
-            pauseOnMouseEnter: false,
-          }}
+          autoplay={
+            prefersReducedMotion
+              ? false
+              : {
+                  delay: 5000,
+                  disableOnInteraction: false,
+                  pauseOnMouseEnter: false,
+                }
+          }
           rewind={true}
           className="hero-swiper"
           onSwiper={(swiper) => {
@@ -172,16 +204,17 @@ const HeroCarousel = () => {
                       videoRefs.current[index] = el;
                     }}
                     src={slide.src}
-                    autoPlay
+                    autoPlay={!prefersReducedMotion && isPlaying}
                     muted
                     loop
                     playsInline
                     className="hero-media"
+                    aria-label={slide.alt}
                   />
                 ) : (
                   <img
                     src={slide.src}
-                    alt={slide.heading}
+                    alt={slide.alt}
                     className="hero-media"
                   />
                 )}
@@ -190,6 +223,16 @@ const HeroCarousel = () => {
             </SwiperSlide>
           ))}
         </Swiper>
+
+        <div className="hero-slide-info" aria-live="polite">
+          <div className="hero-slide-info-panel">
+            <div className="hero-slide-meta">{featuredProject.metadata}</div>
+            <h3>
+              <Link to={featuredProject.href}>{featuredProject.title}</Link>
+            </h3>
+            <p>{featuredProject.description}</p>
+          </div>
+        </div>
 
         {/* Combined Controls: Pagination + Play/Pause Button */}
         <div className="hero-controls">

@@ -1,48 +1,54 @@
+import { Link } from "react-router-dom";
 import "./IncomingDrops.css";
 
 interface Drop {
   id: number;
   title: string;
-  media: string;
-  type: "image" | "video";
+  metadata: string;
+  description: string;
+  href: string;
+  media?: string;
+  type?: "image" | "video";
+  visualLabel?: string;
 }
 
 const drops: Drop[] = [
   {
     id: 1,
-    title: "Chargefeel 3",
-    media: "/videos/play-like-its-personal.mp4",
-    type: "video",
-  },
-  {
-    id: 2,
-    title: "lululemon SoHo store opening",
+    title: "Shop the Look",
+    metadata: "LULULEMON · COMMERCE · INTERACTION",
+    description:
+      "Turning editorial inspiration into an intuitive path to purchase.",
+    href: "/projects/shop-the-look",
     media: "/images/lululemon-soho-store-opening.png",
     type: "image",
   },
   {
+    id: 2,
+    title: "Symbiotique",
+    metadata: "DESIGN SYSTEMS · AI · ENTERPRISE",
+    description:
+      "A design system built to scale AI-powered product experiences across teams and platforms.",
+    href: "/projects/symbiotique",
+    visualLabel: "System components",
+  },
+  {
     id: 3,
-    title: "Summer Bags Drop",
-    media: "/images/summer-bags-drop.png",
-    type: "image",
+    title: "CalyPad",
+    metadata: "PRODUCT · DESIGN + ENGINEERING",
+    description:
+      "A service-commerce platform for managing bookings and business operations.",
+    href: "/projects/calypad",
+    visualLabel: "Booking platform",
   },
   {
     id: 4,
-    title: "Spring Lookbook",
-    media: "/images/spring-lookbook.png",
-    type: "image",
-  },
-  {
-    id: 5,
-    title: "ABC Collection",
-    media: "/images/abc-collection.png",
-    type: "image",
-  },
-  {
-    id: 6,
-    title: "Team Canada Kit",
-    media: "/images/team-canada-kit.png",
-    type: "image",
+    title: "Deska",
+    metadata: "MARKETPLACE · PRODUCT · DESIGN + ENGINEERING",
+    description:
+      "A pre-owned device marketplace for buying quality used phones and selling devices with ease.",
+    href: "/projects/deska",
+    visualLabel: "Device marketplace",
   },
 ];
 
@@ -50,21 +56,41 @@ const IncomingDrops = () => {
   return (
     <section className="incoming-drops-section">
       <div className="drops-container">
-        <h2 className="drops-title">Selected Projects</h2>
         <div className="drops-grid">
           {drops.map((drop) => (
-            <div key={drop.id} className="drop-card">
+            <Link
+              key={drop.id}
+              className="drop-card"
+              to={drop.href}
+              aria-label={`View ${drop.title} project: ${drop.metadata}. ${drop.description}`}
+            >
               <div className="drop-image">
-                {drop.type === "video" ? (
+                {drop.type === "video" && drop.media ? (
                   <video src={drop.media} autoPlay muted loop playsInline />
-                ) : (
+                ) : drop.media ? (
                   <img src={drop.media} alt={drop.title} />
+                ) : (
+                  <div
+                    className="drop-placeholder"
+                    role="img"
+                    aria-label={`${drop.title} placeholder preview`}
+                  >
+                    <span className="drop-placeholder-bars">
+                      <i />
+                      <i />
+                    </span>
+                    <strong>{drop.visualLabel}</strong>
+                  </div>
                 )}
+                <div className="drop-overlay" aria-hidden="true">
+                  <div className="drop-overlay-panel">
+                    <div className="drop-meta">{drop.metadata}</div>
+                    <h3>{drop.title}</h3>
+                    <p>{drop.description}</p>
+                  </div>
+                </div>
               </div>
-              <div className="drop-content">
-                <h3 className="drop-title">{drop.title}</h3>
-              </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
