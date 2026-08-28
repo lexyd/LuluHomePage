@@ -1,11 +1,12 @@
 import Footer from "../components/Footer";
 import Navigation from "../components/Navigation";
-import FeaturedProject from "../components/projects/FeaturedProject";
 import GitHubContributions from "../components/projects/GitHubContributions";
 import ProjectListItem from "../components/projects/ProjectListItem";
 import SectionHeading from "../components/projects/SectionHeading";
 import {
+  activeCaseStudySlugs,
   additionalProjects,
+  allProjects,
   featuredProjects,
   projectGroups,
 } from "../data/projects";
@@ -15,6 +16,9 @@ type PersonalProject = {
   title: string;
   description: string;
   url: string;
+  external?: boolean;
+  avatar?: string;
+  avatarAlt?: string;
 };
 
 const personalProjects: PersonalProject[] = [
@@ -23,40 +27,65 @@ const personalProjects: PersonalProject[] = [
     description:
       "Key insights from best-selling nonfiction books, designed for faster reading and listening.",
     url: "https://tldrbook.app/",
-  },
-  {
-    title: "CalyPad",
-    description:
-      "Bookings, reminders, and loyalty tools for health and beauty businesses.",
-    url: "https://www.calypad.com/",
+    external: true,
+    avatar: "/images/tldr-books-avatar.png",
+    avatarAlt: "TLDR Books app icon",
   },
   {
     title: "Deska",
-    description: "A marketplace for buying quality used phones at auction prices.",
+    description:
+      "A pre-owned device marketplace for buying quality used phones and selling devices with ease.",
     url: "https://deskatech.com/app",
+    external: true,
+    avatar: "/images/deska-avatar.svg",
+    avatarAlt: "Deska device marketplace icon",
   },
 ];
 
 const PersonalProjectList = ({ projects }: { projects: PersonalProject[] }) => (
   <div className="personal-project-list">
-    {projects.map((project) => (
-      <a
-        className="personal-project-item"
-        href={project.url}
-        key={project.url}
-        target="_blank"
-        rel="noreferrer"
-      >
-        <span className="personal-project-title">{project.title}</span>
-        <span className="personal-project-description">
-          {project.description}
+    {projects.map((project) => {
+      const externalProps = project.external
+        ? { target: "_blank", rel: "noreferrer" }
+        : {};
+
+      return (
+        <a
+          className="personal-project-item"
+          href={project.url}
+          key={project.url}
+          {...externalProps}
+        >
+        {project.avatar ? (
+          <span className="personal-project-avatar" aria-hidden="true">
+            <img src={project.avatar} alt="" />
+          </span>
+        ) : null}
+        <span className="personal-project-copy">
+          <span className="personal-project-title">{project.title}</span>
+          <span className="personal-project-description">
+            {project.description}
+          </span>
         </span>
-      </a>
-    ))}
+        </a>
+      );
+    })}
   </div>
 );
 
 const ProjectsPage = () => {
+  const isActiveCaseStudy = (slug: string) =>
+    activeCaseStudySlugs.some((activeSlug) => activeSlug === slug);
+  const selectedWorkProjects = [
+    ...featuredProjects.filter((project) => isActiveCaseStudy(project.slug)),
+    ...additionalProjects.filter(
+      (project) => isActiveCaseStudy(project.slug)
+    ),
+  ];
+  const selectedWorkSlugs = new Set(
+    selectedWorkProjects.map((project) => project.slug)
+  );
+
   return (
     <>
       <Navigation />
@@ -68,14 +97,7 @@ const ProjectsPage = () => {
               description="Products, systems, and AI experiences I've designed or built and love."
             />
             <div className="featured-project-grid">
-              {featuredProjects.slice(0, 1).map((project, index) => (
-                <FeaturedProject
-                  key={project.slug}
-                  project={project}
-                  index={index}
-                />
-              ))}
-              {featuredProjects.slice(1).map((project) => (
+              {selectedWorkProjects.map((project) => (
                 <ProjectListItem key={project.slug} project={project} selected />
               ))}
             </div>
@@ -87,8 +109,9 @@ const ProjectsPage = () => {
             {projectGroups
               .filter((group) => group !== "Systems & Design Engineering")
               .map((group) => {
-                const projects = additionalProjects.filter(
-                  (project) => project.group === group
+                const projects = allProjects.filter(
+                  (project) =>
+                    project.group === group && !selectedWorkSlugs.has(project.slug)
                 );
                 const isPersonal = group === "Personal Projects";
 

@@ -1,11 +1,20 @@
 export type ProjectGroup =
   | "Systems & Design Engineering"
-  | "Selected Interactions"
-  | "Personal Projects";
+  | "Personal Projects"
+  | "Coming Soon";
 
 export type ProjectDetailMedia = {
   title?: string;
+  component?:
+    | "hero-carousel"
+    | "carousel-transition-demo"
+    | "carousel-pagination-demo"
+    | "carousel-playback-demo"
+    | "carousel-controls-demo";
   image?: string;
+  video?: string;
+  poster?: string;
+  fit?: "cover" | "contain" | "phone-stage" | "phone-contain";
   imageAlt: string;
   visualLabel: string;
   caption?: string;
@@ -16,6 +25,7 @@ export type ProjectDetailSectionLayout =
   | "two-up"
   | "media-text"
   | "text-media"
+  | "mobile-before-after"
   | "device-comparison"
   | "detail-crops";
 
@@ -23,6 +33,7 @@ export type ProjectDetailSection = {
   title: string;
   statement?: string;
   paragraphs?: string[];
+  flow?: string[];
   layout: ProjectDetailSectionLayout;
   media: ProjectDetailMedia[];
 };
@@ -33,6 +44,16 @@ export type ProjectDetail = {
   role: string;
   company: string;
   scope: string;
+  customMeta?: {
+    label: string;
+    value: string;
+  }[];
+  metaLabels?: {
+    role?: string;
+    company?: string;
+    scope?: string;
+    year?: string;
+  };
   heroVisual: ProjectDetailMedia;
   proofPoints: {
     label: string;
@@ -40,7 +61,8 @@ export type ProjectDetail = {
     description: string;
   }[];
   overview: {
-    heading: string;
+    label?: string;
+    heading?: string;
     paragraphs: string[];
   };
   ownership: string[];
@@ -50,6 +72,7 @@ export type ProjectDetail = {
     description: string;
   }[];
   reflection?: string;
+  closingStatement?: string;
   nextProjectSlug?: string;
 };
 
@@ -57,371 +80,341 @@ export type Project = {
   title: string;
   slug: string;
   category: string;
+  company?: string;
   year: string;
   description: string;
+  externalUrl?: string;
   image?: string;
   imageAlt: string;
   visualLabel?: string;
   featured?: boolean;
+  comingSoon?: boolean;
   group: ProjectGroup;
   detail?: ProjectDetail;
 };
 
+export const activeCaseStudySlugs = [
+  "flexible-group-booking",
+  "contextual-booking-drawer",
+  "immersive-product-carousel",
+] as const;
+
 export const featuredProjects: Project[] = [
   {
-    title: "Symbiotique",
+    title: "AI Chat Input",
     slug: "symbiotique",
-    category: "Design Systems · AI · Enterprise",
+    category: "Publicis · AI · Interaction",
+    company: "Publicis",
     year: "2026",
     description:
-      "A design system built to scale AI-powered product experiences across teams and platforms.",
-    imageAlt: "Placeholder UI composition for Symbiotique.",
-    visualLabel: "System components",
+      "A compact AI input pattern for prompting, feedback, and response states.",
+    imageAlt: "Placeholder AI chat input interaction composition for Publicis.",
+    visualLabel: "AI chat input",
     featured: true,
-    group: "Systems & Design Engineering",
+    comingSoon: true,
+    group: "Coming Soon",
     detail: {
-      eyebrow: "Design Systems · AI",
+      eyebrow: "Publicis · AI · Interaction",
       summary:
-        "Scaling AI-powered product experiences across teams and platforms.",
-      role: "Design Systems Lead",
-      company: "MRCL / Nurun",
-      scope: "AI · Systems · Design Engineering",
+        "Designing an AI chat input that makes prompting feel clear, responsive, and usable.",
+      role: "Product Design · Design Engineering",
+      company: "Publicis",
+      scope: "AI · Input States · Interaction",
       heroVisual: {
         imageAlt:
-          "Placeholder system board showing Symbiotique AI product foundations.",
-        visualLabel: "Symbiotique system",
-        caption: "Placeholder visual. Replace with real system screens.",
+          "Placeholder showing the Publicis AI chat input and prompt states.",
+        visualLabel: "AI chat input",
+        caption: "Placeholder visual. Replace with the real Publicis input screens or recording.",
       },
       proofPoints: [
         {
-          label: "System Coverage",
-          description: "Shared foundations across core product surfaces.",
+          label: "Prompting surface",
+          description:
+            "A focused input pattern for the moment users ask the AI to do something.",
         },
         {
-          label: "Responsive Foundation",
+          label: "State feedback",
           description:
-            "Patterns supporting desktop, tablet, and mobile behaviours.",
+            "Visual and motion states communicate focus, readiness, and system activity.",
         },
         {
-          label: "Cross-Team Adoption",
+          label: "Buildable behaviour",
           description:
-            "A governance model supporting design and engineering alignment.",
+            "The interaction is shaped as implemented behaviour, not only a static mockup.",
         },
       ],
       overview: {
         heading:
-          "Building a design system for a product wasn't the challenge. Building one for an evolving AI platform was.",
+          "The chat input is small, but it sets the tone for the entire AI experience.",
         paragraphs: [
-          "Symbiotique needed a foundation that could support product teams moving through ambiguity without turning every new AI interaction into a one-off interface.",
-          "The work focused on the connective tissue between design intent and shipped behaviour: reusable patterns, responsive rules, accessibility expectations, and governance that could survive real product pressure.",
+          "For Publicis, the AI chat input became the place where product intent, system feedback, and user confidence had to meet.",
+          "The work focused on making the input feel responsive without becoming decorative: clear focus states, readable prompt composition, restrained motion, and feedback that helps users understand what the AI is doing.",
         ],
       },
       ownership: [
-        "Design system direction",
-        "AI interaction patterns",
-        "Responsive architecture",
-        "Governance",
+        "Input interaction design",
+        "Prompt states",
+        "Motion behaviour",
+        "Prototype implementation",
         "Accessibility",
-        "Design-engineering collaboration",
+        "Responsive behaviour",
       ],
       sections: [
         {
-          title: "Designing a system for AI",
+          title: "Designing the first moment of AI",
           statement:
-            "The system needed to account for uncertain outputs, review states, and human handoff without feeling fragmented.",
+            "The input needed to feel trustworthy before the AI ever returned an answer.",
           paragraphs: [
-            "Instead of treating AI moments as isolated product features, the work framed them as reusable interaction patterns with clear states, constraints, and escalation paths.",
+            "The prompt field is where users decide what to ask, how much context to provide, and whether the system feels ready. The design work centered on that moment of intent.",
           ],
           layout: "media-text",
           media: [
             {
               imageAlt:
-                "Placeholder AI interaction state map for Symbiotique.",
-              visualLabel: "AI state map",
-              caption: "Placeholder visual. Replace with AI flow artifacts.",
+                "Placeholder focused Publicis AI input state.",
+              visualLabel: "Input focus",
+              caption: "Placeholder visual. Replace with the real focused input state.",
             },
           ],
         },
         {
-          title: "From components to product patterns",
+          title: "States that explain themselves",
           statement:
-            "The system moved beyond component inventory into repeatable product decisions.",
+            "The interaction needed to show what was happening without asking the user to interpret too much UI.",
           paragraphs: [
-            "Components handled the surface. Patterns handled the judgement: how prompts appear, how generated content is reviewed, and how users recover when the system needs more context.",
+            "Focus, active, loading, and response states were treated as part of one interaction language. The goal was to make the field feel alive enough to communicate state, but quiet enough to keep writing comfortable.",
           ],
           layout: "two-up",
           media: [
             {
               imageAlt:
-                "Placeholder component foundations panel for Symbiotique.",
-              visualLabel: "Foundations",
-              caption: "Placeholder component overview.",
+                "Placeholder active Publicis AI input state.",
+              visualLabel: "Active",
+              caption: "Placeholder active input state.",
             },
             {
               imageAlt:
-                "Placeholder product pattern panel for Symbiotique.",
-              visualLabel: "Patterns",
-              caption: "Placeholder pattern overview.",
+                "Placeholder thinking or loading Publicis AI input state.",
+              visualLabel: "Thinking",
+              caption: "Placeholder AI activity state.",
             },
           ],
         },
         {
-          title: "Making responsive behaviour systematic",
+          title: "Motion as feedback",
           statement:
-            "Responsive decisions were treated as product rules, not screen-by-screen fixes.",
+            "Motion should explain state, not decorate the field.",
           paragraphs: [
-            "The detail work defined how AI panels, review surfaces, and dense product controls should adapt across breakpoints while keeping priority actions clear.",
+            "Small changes in gradient, focus, and timing can make an AI surface feel more responsive. The restraint matters: the animation has to support the prompt task instead of competing with it.",
+          ],
+          layout: "media-text",
+          media: [
+            {
+              imageAlt:
+                "Placeholder Publicis chat input motion sequence.",
+              visualLabel: "Motion states",
+              caption: "Placeholder visual. Replace with the real input animation.",
+            },
+          ],
+        },
+        {
+          title: "Keeping the input usable",
+          statement:
+            "A prompt field still has to behave like a strong form control.",
+          paragraphs: [
+            "The interaction has to preserve readability, clear affordances, keyboard access, and responsive behaviour while layering AI-specific feedback on top.",
           ],
           layout: "device-comparison",
           media: [
             {
               title: "Desktop",
-              imageAlt: "Placeholder desktop layout for Symbiotique.",
+              imageAlt:
+                "Placeholder desktop Publicis AI chat input layout.",
               visualLabel: "Desktop",
             },
             {
               title: "Tablet",
-              imageAlt: "Placeholder tablet layout for Symbiotique.",
+              imageAlt:
+                "Placeholder tablet Publicis AI chat input layout.",
               visualLabel: "Tablet",
             },
             {
               title: "Mobile",
-              imageAlt: "Placeholder mobile layout for Symbiotique.",
+              imageAlt:
+                "Placeholder mobile Publicis AI chat input layout.",
               visualLabel: "Mobile",
             },
           ],
         },
         {
-          title: "Governance that scales beyond one team",
+          title: "Designing it to survive implementation",
           statement:
-            "The system needed a contribution model that made quality easier to maintain.",
+            "The input needed to be specified as behaviour, not just appearance.",
           paragraphs: [
-            "Design and engineering collaboration centered on clear ownership, review rituals, and implementation notes that reduced interpretation gaps between design files and production code.",
+            "The design engineering work lives in the details: how the field responds to focus, how activity is communicated, how motion is reduced when needed, and how the component remains predictable across screen sizes.",
           ],
-          layout: "text-media",
+          layout: "full",
+          flow: [
+            "Prompt intent",
+            "Input state",
+            "System activity",
+            "Response feedback",
+            "Reduced motion",
+          ],
           media: [
-            {
-              imageAlt:
-                "Placeholder governance workflow diagram for Symbiotique.",
-              visualLabel: "Governance flow",
-              caption: "Placeholder governance model.",
-            },
-          ],
-        },
-        {
-          title: "Accessibility as infrastructure",
-          statement:
-            "Accessibility decisions belonged inside the system, not at the edge of QA.",
-          paragraphs: [
-            "Interaction states, focus paths, contrast expectations, and semantic patterns were documented as part of the foundation so teams could build with accessibility from the start.",
-          ],
-          layout: "detail-crops",
-          media: [
-            {
-              imageAlt:
-                "Placeholder focus state detail crop for Symbiotique.",
-              visualLabel: "Focus states",
-            },
-            {
-              imageAlt:
-                "Placeholder semantic structure detail crop for Symbiotique.",
-              visualLabel: "Semantics",
-            },
-            {
-              imageAlt:
-                "Placeholder contrast rule detail crop for Symbiotique.",
-              visualLabel: "Contrast",
-            },
           ],
         },
       ],
       outcomes: [
         {
-          title: "One responsive foundation",
+          title: "Clearer AI state",
           description:
-            "A shared structure supporting desktop, tablet, and mobile experiences.",
+            "The input gives users a better sense of when the system is ready, active, or responding.",
         },
         {
-          title: "Clearer contribution model",
+          title: "More usable prompt surface",
           description:
-            "A defined workflow between design, product, and engineering.",
+            "The field stays focused on writing while still carrying AI-specific feedback.",
         },
         {
-          title: "Reusable AI patterns",
+          title: "Buildable interaction language",
           description:
-            "Common interaction models for prompts, outputs, review, and human handoff.",
+            "The behaviour can inform other AI surfaces beyond this single input.",
         },
       ],
       reflection:
-        "The strongest systems do more than organize components. They make the next product decision clearer, especially when the product space is still changing.",
-      nextProjectSlug: "calypad",
+        "A prompt input is a small surface with a large responsibility. It shapes how confident the user feels before, during, and after asking the system for help.",
+      nextProjectSlug: "flexible-group-booking",
     },
   },
   {
-    title: "CalyPad",
-    slug: "calypad",
-    category: "Product · Design + Engineering",
+    title: "Flexible Group Booking",
+    slug: "flexible-group-booking",
+    category: "Product · Booking · Interaction",
+    company: "CalyPad",
     year: "2026",
     description:
-      "A service-commerce platform for managing services, availability, bookings, customers, and operations.",
-    imageAlt: "Placeholder product interface composition for CalyPad.",
+      "Making everyday booking interactions feel simple, even when the logic behind them isn't.",
+    image: "/images/projects/calypad/flexible-group-booking-cover.png",
+    imageAlt: "CalyPad group booking flow with a group option and four people selected.",
     visualLabel: "Booking platform",
     featured: true,
     group: "Systems & Design Engineering",
     detail: {
-      eyebrow: "Product · Design + Engineering",
+      eyebrow: "Product · Booking · Interaction",
       summary:
-        "Designing and building a service-commerce platform for everyday operations.",
-      role: "Product Designer + Front-End Engineer",
+        "Making group booking feel like a natural extension of choosing who the appointment is for.",
+      role: "Product Design · Design Engineering",
       company: "CalyPad",
-      scope: "Product · Booking · Operations",
-      heroVisual: {
-        imageAlt:
-          "Placeholder service-commerce dashboard and booking flow for CalyPad.",
-        visualLabel: "CalyPad product",
-        caption: "Placeholder visual. Replace with real CalyPad screens.",
-      },
-      proofPoints: [
+      scope: "",
+      customMeta: [
         {
-          label: "Service Management",
-          description:
-            "A product surface for managing services, availability, and booking rules.",
+          label: "Product",
+          value: "CalyPad",
         },
         {
-          label: "Customer Flow",
-          description:
-            "A clearer path from discovery to scheduling and confirmation.",
+          label: "Role",
+          value: "Product Design · Design Engineering",
         },
         {
-          label: "Operations Layer",
-          description:
-            "Interfaces for the behind-the-scenes work that keeps bookings moving.",
+          label: "Date",
+          value: "2026",
         },
       ],
+      heroVisual: {
+        image: "/images/projects/calypad/Flexible-group-phone.png",
+        fit: "phone-stage",
+        imageAlt:
+          "Phone mockup showing the CalyPad flexible group booking service selection screen.",
+        visualLabel: "Flexible group booking phone",
+        caption:
+          "The selected booking type and people counter stay connected as one interaction.",
+      },
+      proofPoints: [],
       overview: {
-        heading:
-          "The product had to make selling time feel as structured as selling inventory.",
+        label: "",
         paragraphs: [
-          "CalyPad brings together the customer-facing booking experience and the operational tools needed to manage service commerce.",
-          "The design engineering work focused on shaping reusable flows, interface states, and responsive product surfaces that could support both business owners and customers.",
+          "CalyPad lets someone book a service for themselves or for a small group. Selecting \"A group\" reveals a people counter before the customer continues through the rest of the booking.",
+          "The interaction worked, but the transition didn't feel connected. The counter appeared immediately and the card jumped to its new height.",
         ],
       },
-      ownership: [
-        "Product structure",
-        "Booking flow design",
-        "Interface prototyping",
-        "Responsive layouts",
-        "Front-end implementation",
-        "Operational states",
-      ],
+      ownership: [],
       sections: [
         {
-          title: "Structuring service commerce",
-          statement:
-            "The core product challenge was making services, schedules, and customer decisions feel connected.",
+          title: "Revealing the counter without the jump",
+          layout: "mobile-before-after",
+          media: [
+            {
+              title: "Before",
+              video: "/images/projects/calypad/flexible-group-booking-before.mov",
+              poster: "/images/projects/calypad/flexible-group-booking-mobile.png",
+              imageAlt:
+                "Before video showing the group booking counter appearing immediately after A group is selected.",
+              visualLabel: "Before",
+            },
+            {
+              title: "After",
+              video: "/images/projects/calypad/flexible-group-booking-after.mov",
+              poster: "/images/projects/calypad/flexible-group-booking-cover.png",
+              imageAlt:
+                "After video showing the group booking counter revealing smoothly after A group is selected.",
+              visualLabel: "After",
+            },
+          ],
+        },
+        {
+          title: "Summary",
           paragraphs: [
-            "The interface needed to support browsing, selecting, scheduling, and managing services without forcing each step into a separate mental model.",
+            "The original component conditionally mounted the people counter as soon as \"A group\" was selected. The controls worked, but introducing them instantly caused the card height to jump and made the second state feel disconnected from the action that triggered it.",
+            "I changed the reveal to a short expansion using layout, opacity, and a small vertical settle. Instead of popping into the layout, the counter now feels like it grows out of the selected booking state.",
+            "The motion is deliberately small. It doesn't add another step or make the control more decorative. It simply makes the relationship between the two states easier to follow.",
+          ],
+          layout: "full",
+          media: [],
+        },
+        {
+          title: "A small interaction carrying real product logic",
+          paragraphs: [
+            "The control looks small, but the selected group size travels through the rest of the booking. It affects the time reserved for the appointment, the service total, and the duration used when CalyPad looks for availability.",
+            "The final booking values are also derived and verified on the server rather than relying only on what the client sends.",
           ],
           layout: "media-text",
           media: [
             {
-              imageAlt: "Placeholder CalyPad service management interface.",
-              visualLabel: "Service setup",
-              caption: "Placeholder service management screen.",
+              image: "/images/projects/calypad/flexible-group-booking-summary.png",
+              fit: "contain",
+              imageAlt:
+                "CalyPad booking summary showing booking details after time selection.",
+              visualLabel: "Booking summary",
+              caption:
+                "The selected group size continues into the summary and booking calculations.",
             },
           ],
         },
         {
-          title: "Designing the booking path",
-          statement:
-            "Booking needed to stay focused even when availability, duration, and customer details changed.",
+          title: "Motion and accessibility",
           paragraphs: [
-            "The flow was shaped around progressive decisions, clear confirmation states, and reusable UI patterns that could adapt to different service types.",
+            "The reveal respects reduced-motion preferences, removing the transition when motion has been reduced at the system level.",
           ],
-          layout: "two-up",
-          media: [
-            {
-              imageAlt: "Placeholder CalyPad booking selection state.",
-              visualLabel: "Selection",
-            },
-            {
-              imageAlt: "Placeholder CalyPad booking confirmation state.",
-              visualLabel: "Confirmation",
-            },
-          ],
-        },
-        {
-          title: "Making operations visible",
-          statement:
-            "The admin experience needed to surface what mattered without overwhelming the operator.",
-          paragraphs: [
-            "Dashboards, lists, and detail states were organized around recurring work: seeing what is booked, understanding customer context, and making updates quickly.",
-          ],
-          layout: "text-media",
-          media: [
-            {
-              imageAlt: "Placeholder CalyPad operations dashboard.",
-              visualLabel: "Operations",
-              caption: "Placeholder operations surface.",
-            },
-          ],
-        },
-        {
-          title: "Responsive from the start",
-          statement:
-            "Service businesses are often managed in motion, so the product could not be desktop-only.",
-          paragraphs: [
-            "The system supports compact booking surfaces and operational views that can stack cleanly across desktop, tablet, and mobile.",
-          ],
-          layout: "device-comparison",
-          media: [
-            {
-              title: "Desktop",
-              imageAlt: "Placeholder desktop CalyPad layout.",
-              visualLabel: "Desktop",
-            },
-            {
-              title: "Tablet",
-              imageAlt: "Placeholder tablet CalyPad layout.",
-              visualLabel: "Tablet",
-            },
-            {
-              title: "Mobile",
-              imageAlt: "Placeholder mobile CalyPad layout.",
-              visualLabel: "Mobile",
-            },
-          ],
+          layout: "full",
+          media: [],
         },
       ],
-      outcomes: [
-        {
-          title: "Reusable booking structure",
-          description:
-            "A shared flow model for service selection, scheduling, and confirmation.",
-        },
-        {
-          title: "Connected operations",
-          description:
-            "Admin surfaces organized around availability, customers, and bookings.",
-        },
-        {
-          title: "Responsive product foundation",
-          description:
-            "Layouts that support customer and operator tasks across screen sizes.",
-        },
-      ],
-      reflection:
-        "The useful detail in this kind of product is often operational. The interface has to make the business logic legible without making the product feel heavy.",
-      nextProjectSlug: "deska",
+      outcomes: [],
+      closingStatement:
+        "The booking didn't gain a new capability. It simply stopped feeling like one state had been swapped abruptly for another.",
+      nextProjectSlug: "contextual-booking-drawer",
     },
   },
   {
     title: "Deska",
     slug: "deska",
     category: "Marketplace · Product · Design + Engineering",
+    company: "Deska",
     year: "2026",
     description:
       "A pre-owned device marketplace for buying quality used phones and selling devices with ease.",
+    externalUrl: "https://deskatech.com/app",
     imageAlt: "Placeholder pre-owned device marketplace interface composition for Deska.",
     visualLabel: "Device marketplace",
     featured: true,
@@ -553,147 +546,304 @@ export const featuredProjects: Project[] = [
 
 export const additionalProjects: Project[] = [
   {
+    title: "Contextual Booking Drawer",
+    slug: "contextual-booking-drawer",
+    category: "CalyPad · Calendar · Operations",
+    company: "CalyPad",
+    year: "2026",
+    description:
+      "Opening booking details without taking staff away from the calendar.",
+    image: "/images/projects/calypad/contextual-booking-drawer-cover.png",
+    imageAlt:
+      "CalyPad booking drawer open over the calendar context.",
+    visualLabel: "Booking drawer",
+    group: "Systems & Design Engineering",
+    detail: {
+      eyebrow: "CalyPad · Calendar · Operations",
+      summary:
+        "Keeping booking details in context — all the way through the exit.",
+      role: "Product Design · Design Engineering",
+      company: "CalyPad",
+      scope: "",
+      customMeta: [
+        {
+          label: "Product",
+          value: "CalyPad",
+        },
+        {
+          label: "Role",
+          value: "Product Design · Design Engineering",
+        },
+        {
+          label: "Date",
+          value: "2026",
+        },
+      ],
+      heroVisual: {
+        image: "/images/projects/calypad/contextual-booking-drawer-calendar.png",
+        fit: "contain",
+        imageAlt:
+          "CalyPad calendar view used as the contextual booking drawer starting point.",
+        visualLabel: "Calendar context",
+        caption: "The drawer starts from the calendar rather than replacing it.",
+      },
+      proofPoints: [],
+      overview: {
+        label: "",
+        paragraphs: [
+          "CalyPad staff manage appointments from a calendar, so booking details open in a drawer rather than replacing the page. The surrounding schedule stays visible while the booking's information and actions come into view.",
+          "The drawer already animated when opening and closing. The issue showed up at the very end of the interaction.",
+        ],
+      },
+      ownership: [],
+      sections: [
+        {
+          title: "Letting the whole drawer leave together",
+          layout: "mobile-before-after",
+          media: [
+            {
+              title: "Before",
+              video: "/images/projects/calypad/contextual-booking-drawer-before.mov",
+              poster: "/images/projects/calypad/contextual-booking-drawer-mobile.png",
+              imageAlt:
+                "Before video showing the booking drawer contents disappearing before the panel finishes closing.",
+              visualLabel: "Before",
+            },
+            {
+              title: "After",
+              video: "/images/projects/calypad/contextual-booking-drawer-after.mov",
+              poster: "/images/projects/calypad/contextual-booking-drawer-cover.png",
+              imageAlt:
+                "After video showing the booking drawer contents and panel closing together.",
+              visualLabel: "After",
+            },
+          ],
+        },
+        {
+          title: "Summary",
+          paragraphs: [
+            "Originally, the backdrop faded and the drawer slid from the right, but closing it immediately cleared the selected booking. The container continued its exit animation after the contents had already disappeared, leaving an empty panel sliding away.",
+            "The issue wasn't that the drawer needed more animation. The visual transition and the lifecycle of the content weren't finishing together.",
+            "I kept the booking content mounted through the closing state and retuned the drawer to a smoother slide and fade with a softer easing curve. The content and container now leave together, so the drawer reads as one object from the moment it enters until the moment it disappears.",
+          ],
+          layout: "full",
+          media: [],
+        },
+        {
+          title: "Keeping the calendar in view",
+          paragraphs: [
+            "The drawer exists to preserve context. Staff can inspect a booking's status, customer, service, team member, location, time, payment information, and notes without navigating away from the calendar.",
+            "Closing it returns them to the same working surface they started from.",
+          ],
+          layout: "media-text",
+          media: [
+            {
+              image: "/images/projects/calypad/contextual-booking-drawer-calendar.png",
+              fit: "contain",
+              imageAlt:
+                "CalyPad calendar and schedule page before opening the booking drawer.",
+              visualLabel: "Calendar context",
+              caption:
+                "The drawer starts from a calendar view, not a separate detail destination.",
+            },
+          ],
+        },
+        {
+          title: "Actions follow the booking",
+          paragraphs: [
+            "The drawer also responds to the booking itself. Open bookings can expose actions such as completing or cancelling the appointment, while completed, cancelled, and no-show bookings don't present those same actions.",
+            "Those states are tied to shared booking logic rather than being defined independently inside the drawer.",
+          ],
+          layout: "two-up",
+          media: [
+            {
+              image: "/images/projects/calypad/contextual-booking-drawer-actions.png",
+              fit: "contain",
+              imageAlt:
+                "CalyPad booking drawer showing booking details and available actions.",
+              visualLabel: "Drawer actions",
+              caption:
+                "Booking details and actions live in the panel while the calendar remains close by.",
+            },
+            {
+              image: "/images/projects/calypad/contextual-booking-drawer-mobile.png",
+              fit: "phone-contain",
+              imageAlt:
+                "Mobile responsive CalyPad booking drawer detail view.",
+              visualLabel: "Mobile drawer",
+              caption:
+                "On mobile, the drawer pattern becomes a focused booking detail surface.",
+            },
+          ],
+        },
+        {
+          title: "Motion and accessibility",
+          paragraphs: [
+            "The updated drawer respects reduced-motion preferences and includes basic dialog semantics. The motion remains an enhancement rather than the only way the opening and closing state is communicated.",
+          ],
+          layout: "full",
+          media: [],
+        },
+      ],
+      outcomes: [],
+      closingStatement:
+        "Opening the drawer was never the interesting bug. Closing it revealed the disconnect. Keeping the content and container alive through the same transition made the interaction feel complete without changing what the feature actually does.",
+      nextProjectSlug: "immersive-product-carousel",
+    },
+  },
+  {
     title: "Immersive Product Carousel",
     slug: "immersive-product-carousel",
     category: "Lululemon · Commerce · Motion",
+    company: "lululemon",
     year: "2026",
     description:
       "Making product discovery feel fluid, tactile, and intentional.",
     image: "/images/game-set-unmatched-gear.jpg",
     imageAlt: "lululemon tennis campaign image used for an immersive product carousel.",
-    group: "Selected Interactions",
+    group: "Systems & Design Engineering",
     detail: {
       eyebrow: "Lululemon · Commerce · Motion",
       summary:
         "Making product discovery feel fluid, tactile, and intentional.",
-      role: "Product Design / Interaction Design",
+      role: "Product Design · Interaction Design",
       company: "lululemon",
       scope: "Commerce · Interaction · Motion",
+      customMeta: [
+        {
+          label: "Company",
+          value: "lululemon",
+        },
+        {
+          label: "Role",
+          value: "Product Design · Interaction Design",
+        },
+        {
+          label: "Scope",
+          value: "Commerce · Interaction · Motion",
+        },
+        {
+          label: "Year",
+          value: "2026",
+        },
+      ],
       heroVisual: {
-        image: "/images/game-set-unmatched-gear.jpg",
+        component: "hero-carousel",
         imageAlt:
-          "lululemon tennis campaign image used for an immersive product carousel.",
+          "Live immersive product carousel with lululemon campaign imagery, numbered pagination, and pause/play control.",
         visualLabel: "Product carousel",
         caption:
-          "Uses existing lululemon campaign imagery. The live carousel runs on the homepage.",
+          "The same carousel component and assets used on the homepage.",
       },
-      proofPoints: [
-        {
-          label: "Motion craft",
-          description:
-            "Transitions were shaped to feel fluid without making the carousel hard to control.",
-        },
-        {
-          label: "Commerce clarity",
-          description:
-            "The interaction keeps product discovery expressive while preserving orientation and intent.",
-        },
-        {
-          label: "Accessible control",
-          description:
-            "Pagination and pause/play controls remain independent, visible, and keyboard reachable.",
-        },
-      ],
+      proofPoints: [],
       overview: {
-        heading:
-          "Carousels are familiar, but familiarity does not automatically make them feel good.",
+        label: "",
         paragraphs: [
-          "The goal was to create a featured commerce moment expressive enough to carry lululemon's editorial imagery while keeping navigation obvious, controllable, and accessible.",
-          "The work focused on pacing, slide continuity, clear state, and controls that do not fight the project-card interaction around them.",
+          "Carousels are familiar, but familiarity doesn't automatically make them feel good.",
+          "For this lululemon feature, I wanted the campaign imagery to stay expressive while the interaction remained easy to understand and control. The work focused on the transitions between slides, clear position in the sequence, and controls that never compete with navigation around them.",
         ],
       },
-      ownership: [
-        "Interaction direction",
-        "Carousel behaviour",
-        "Motion timing",
-        "Pagination states",
-        "Pause/play control",
-        "Responsive QA",
-      ],
+      ownership: [],
       sections: [
         {
           title: "Moving between stories",
-          statement:
-            "The transition needed to feel premium without becoming theatrical.",
           paragraphs: [
-            "Slide movement, image scale, and timing were kept restrained so the carousel feels tactile while still letting the product imagery lead.",
+            "The transition needed to carry the energy of the campaign without becoming the thing people noticed first.",
+            "I kept the movement restrained so one story flows into the next while the imagery stays in control. The motion connects the slides, but the photography remains the focus.",
           ],
           layout: "media-text",
           media: [
             {
-              image: "/images/game-set-unmatched-gear.jpg",
-              imageAlt: "lululemon tennis campaign carousel slide.",
+              component: "carousel-transition-demo",
+              imageAlt:
+                "Focused demo showing movement between lululemon carousel slides.",
               visualLabel: "Slide motion",
             },
           ],
         },
         {
           title: "Knowing where you are",
-          statement:
-            "Numbered pagination makes the position explicit without adding heavy controls.",
           paragraphs: [
-            "The interaction uses simple 1, 2, 3 controls with a separate pause/play affordance so users can move through the carousel or stop motion when they need to.",
+            "The numbered pagination makes position explicit without adding a heavy navigation layer.",
+            "Each state shows where you are in the sequence while keeping the control compact enough to sit quietly over the imagery.",
           ],
-          layout: "two-up",
+          layout: "media-text",
           media: [
             {
-              imageAlt: "Placeholder numbered pagination interaction.",
+              component: "carousel-pagination-demo",
+              imageAlt:
+                "Focused demo showing numbered carousel pagination states one, two, and three.",
               visualLabel: "1 2 3",
             },
-            {
-              imageAlt: "Placeholder pause and play carousel control.",
-              visualLabel: "Pause",
-            },
           ],
         },
         {
-          title: "Keeping controls separate from navigation",
-          statement:
-            "The carousel controls should operate the carousel, not accidentally trigger project navigation.",
+          title: "Staying in control",
           paragraphs: [
-            "The project information and carousel controls are separate interactive regions. That keeps pointer, keyboard, and touch behaviour predictable.",
+            "Because the carousel can move on its own, stopping that motion needs to be as obvious as moving between slides.",
+            "Pause and play sit as a separate control so playback and navigation remain two distinct actions.",
           ],
-          layout: "text-media",
+          layout: "media-text",
           media: [
             {
-              imageAlt: "Placeholder control separation diagram.",
-              visualLabel: "Controls",
+              component: "carousel-playback-demo",
+              imageAlt:
+                "Focused demo showing carousel pause and play control states.",
+              visualLabel: "Pause and play",
             },
           ],
         },
+        {
+          title: "Working together without competing",
+          paragraphs: [
+            "The controls are designed to work together without collapsing into one interaction.",
+            "Pagination changes position in the sequence. Pause and play control motion. Keeping them visually grouped but functionally separate makes the carousel easier to understand and easier to use.",
+          ],
+          layout: "media-text",
+          media: [
+            {
+              component: "carousel-controls-demo",
+              imageAlt:
+                "Focused demo showing carousel pagination and pause/play controls grouped together.",
+              visualLabel: "Carousel controls",
+            },
+          ],
+        },
+        {
+          title: "Summary",
+          paragraphs: [
+            "The work here wasn't about inventing a new carousel pattern. It was about refining a familiar one until movement, orientation, and control felt like parts of the same experience.",
+            "The imagery carries the brand expression. The motion connects the stories. The controls give people enough information to move through it on their own terms.",
+          ],
+          layout: "full",
+          media: [],
+        },
+        {
+          title: "Familiar pattern. Better feel.",
+          paragraphs: [
+            "The carousel still does what a carousel has always done: move between pieces of content.",
+            "What changed is how that movement feels: more connected, easier to control, and quiet enough to let the campaign remain the reason you stop and look.",
+          ],
+          layout: "full",
+          media: [],
+        },
       ],
-      outcomes: [
-        {
-          title: "Image-first feature",
-          description:
-            "The carousel lets campaign visuals lead while information stays available on hover and focus.",
-        },
-        {
-          title: "Clearer orientation",
-          description:
-            "Numbered controls help visitors understand where they are in the sequence.",
-        },
-        {
-          title: "Better interaction boundaries",
-          description:
-            "Carousel controls and project navigation no longer compete for the same click area.",
-        },
-      ],
-      reflection:
-        "Small motion decisions carry a lot of brand feeling. The best carousel is not the loudest one; it is the one that feels easy to control.",
-      nextProjectSlug: "shop-the-look",
+      outcomes: [],
+      nextProjectSlug: "flexible-group-booking",
     },
   },
   {
     title: "Shop the Look",
     slug: "shop-the-look",
     category: "Lululemon · Commerce · Interaction",
+    company: "lululemon",
     year: "2026",
     description:
       "Turning editorial inspiration into an intuitive path to purchase.",
     image: "/images/lululemon-soho-store-opening.png",
     imageAlt: "lululemon retail experience image used for Shop the Look.",
-    group: "Selected Interactions",
+    comingSoon: true,
+    group: "Coming Soon",
     detail: {
       eyebrow: "Lululemon · Commerce · Interaction",
       summary:
@@ -797,119 +947,6 @@ export const additionalProjects: Project[] = [
       ],
       reflection:
         "Commerce craft often lives in the smallest transitions between wanting something and knowing what to do next.",
-      nextProjectSlug: "gradient-chat-input",
-    },
-  },
-  {
-    title: "Gradient Chat Input",
-    slug: "gradient-chat-input",
-    category: "Interaction · AI",
-    year: "2026",
-    description:
-      "A compact input pattern for making AI prompts feel responsive and clear.",
-    imageAlt: "Placeholder gradient chat input interaction preview.",
-    visualLabel: "Chat input",
-    group: "Selected Interactions",
-    detail: {
-      eyebrow: "Interaction · AI",
-      summary:
-        "A compact input pattern for making AI prompts feel responsive and clear.",
-      role: "Design Engineer",
-      company: "Interaction study",
-      scope: "AI · Motion · Input States",
-      heroVisual: {
-        imageAlt: "Placeholder gradient chat input interaction preview.",
-        visualLabel: "Gradient input",
-        caption: "Placeholder visual. Replace with the real input prototype.",
-      },
-      proofPoints: [
-        {
-          label: "State communication",
-          description:
-            "The input communicates readiness, focus, and system activity through small visual changes.",
-        },
-        {
-          label: "Motion restraint",
-          description:
-            "Motion supports feedback without making the input feel distracting.",
-        },
-        {
-          label: "AI clarity",
-          description:
-            "The pattern helps users understand when the system is listening, thinking, or ready.",
-        },
-      ],
-      overview: {
-        heading:
-          "AI input fields need to feel alive without becoming decorative.",
-        paragraphs: [
-          "This interaction study explores how a chat input can communicate state through gradient, focus, and motion while staying usable.",
-          "The goal is to give the interface enough feedback to feel responsive without adding visual noise to a core writing surface.",
-        ],
-      },
-      ownership: [
-        "Input states",
-        "Motion timing",
-        "Focus behaviour",
-        "Reduced motion",
-        "Accessibility",
-        "Prototype implementation",
-      ],
-      sections: [
-        {
-          title: "Designing feedback into the input",
-          statement:
-            "The input needed to show state at the moment users are making decisions.",
-          paragraphs: [
-            "Focus, active, loading, and response states were treated as part of the same interaction language rather than separate visual treatments.",
-          ],
-          layout: "two-up",
-          media: [
-            {
-              imageAlt: "Placeholder focused gradient input state.",
-              visualLabel: "Focus",
-            },
-            {
-              imageAlt: "Placeholder active gradient input state.",
-              visualLabel: "Active",
-            },
-          ],
-        },
-        {
-          title: "Motion as system feedback",
-          statement:
-            "The animation should explain state, not decorate the field.",
-          paragraphs: [
-            "Timing and easing were kept quiet so the input can indicate progress without making the user wait on the animation.",
-          ],
-          layout: "media-text",
-          media: [
-            {
-              imageAlt: "Placeholder gradient input motion sequence.",
-              visualLabel: "Motion",
-            },
-          ],
-        },
-      ],
-      outcomes: [
-        {
-          title: "Clearer AI state",
-          description:
-            "The input gives users a better sense of what the system is doing.",
-        },
-        {
-          title: "Reusable input behaviour",
-          description:
-            "States can map into a broader AI interaction system.",
-        },
-        {
-          title: "Reduced-motion support",
-          description:
-            "The pattern can simplify movement while preserving state clarity.",
-        },
-      ],
-      reflection:
-        "A prompt input is a small surface with a large responsibility. It sets the tone for the entire AI interaction.",
       nextProjectSlug: "floating-entity-navigation",
     },
   },
@@ -917,12 +954,14 @@ export const additionalProjects: Project[] = [
     title: "Floating Entity Navigation",
     slug: "floating-entity-navigation",
     category: "Navigation · Prototype",
+    company: "Interaction Study",
     year: "2026",
     description:
       "A floating navigation pattern for keeping entity context close to action.",
     imageAlt: "Placeholder floating entity navigation interaction preview.",
     visualLabel: "Entity nav",
-    group: "Selected Interactions",
+    comingSoon: true,
+    group: "Coming Soon",
     detail: {
       eyebrow: "Navigation · Prototype",
       summary:
@@ -1037,6 +1076,7 @@ export const additionalProjects: Project[] = [
     title: "AI Interaction Patterns",
     slug: "ai-interaction-patterns",
     category: "AI · Systems",
+    company: "AI Systems",
     year: "2026",
     description:
       "Reusable patterns for AI interaction, review, artifacts, and human handoff.",
@@ -1165,6 +1205,7 @@ export const additionalProjects: Project[] = [
     title: "Responsive System",
     slug: "responsive-system",
     category: "Design Systems · Accessibility",
+    company: "Design Systems",
     year: "2026",
     description:
       "Responsive foundations for consistent product experiences across desktop, tablet, and mobile.",
@@ -1308,6 +1349,7 @@ export const additionalProjects: Project[] = [
     title: "Premium Product Homepage",
     slug: "premium-product-homepage",
     category: "Prototype · Motion",
+    company: "Prototype Study",
     year: "2026",
     description:
       "A motion-rich prototype for editorial media and product discovery.",
@@ -1449,6 +1491,7 @@ export const additionalProjects: Project[] = [
     title: "Agentic Workflow Studies",
     slug: "agentic-workflow-studies",
     category: "AI · Experiment",
+    company: "Workflow Study",
     year: "2026",
     description:
       "Studies for AI-assisted design execution and project workflows.",
@@ -1585,6 +1628,7 @@ export const additionalProjects: Project[] = [
     title: "Motion System Sketches",
     slug: "motion-system-sketches",
     category: "Motion · Prototype",
+    company: "Motion Study",
     year: "2025",
     description:
       "Timing, easing, hover affordances, and transition studies.",
@@ -1715,8 +1759,8 @@ export const additionalProjects: Project[] = [
 
 export const projectGroups: ProjectGroup[] = [
   "Systems & Design Engineering",
-  "Selected Interactions",
   "Personal Projects",
+  "Coming Soon",
 ];
 
 export const allProjects = [...featuredProjects, ...additionalProjects];
