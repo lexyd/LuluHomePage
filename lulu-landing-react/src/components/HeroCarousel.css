@@ -72,6 +72,30 @@
   border-radius: var(--home-card-radius);
 }
 
+.hero-showcase--project-hero,
+.hero-showcase--project-demo {
+  width: 100%;
+  margin: 0;
+}
+
+.hero-showcase--project-hero {
+  --home-card-radius: 12px;
+}
+
+.hero-showcase--project-hero .hero-carousel {
+  aspect-ratio: 16 / 9;
+  height: auto;
+  max-height: 32rem;
+}
+
+.hero-showcase--project-demo {
+  --home-card-radius: 10px;
+}
+
+.hero-showcase--project-demo .hero-carousel {
+  height: clamp(15rem, 30vw, 22rem);
+}
+
 .hero-carousel::after {
   position: absolute;
   inset: 0;
@@ -489,6 +513,11 @@
   .hero-showcase {
     width: calc(100% - 2rem);
     margin-bottom: 0.5rem;
+  }
+
+  .hero-showcase--project-hero,
+  .hero-showcase--project-demo {
+    width: 100%;
   }
 
   .hero-showcase-label {

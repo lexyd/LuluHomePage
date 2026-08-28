@@ -1,14 +1,11 @@
 type ProjectMetaProps = {
-  category: string;
-  year: string;
+  company: string;
 };
 
-const ProjectMeta = ({ category, year }: ProjectMetaProps) => {
+const ProjectMeta = ({ company }: ProjectMetaProps) => {
   return (
     <div className="project-meta">
-      <span>{category}</span>
-      <span aria-hidden="true">·</span>
-      <span>{year}</span>
+      <span>{company}</span>
     </div>
   );
 };

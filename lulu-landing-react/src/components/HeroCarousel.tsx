@@ -1,17 +1,11 @@
-import { useState, useRef, useEffect } from "react";
+import { useId, useState, useRef, useEffect } from "react";
 import type { PointerEvent } from "react";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
+import { heroCarouselSlides } from "../data/heroCarouselSlides";
 import "./HeroCarousel.css";
-
-interface Slide {
-  id: number;
-  type: "video" | "image";
-  src: string;
-  alt: string;
-}
 
 const featuredProject = {
   href: "/projects/immersive-product-carousel",
@@ -20,33 +14,26 @@ const featuredProject = {
   description: "Making product discovery feel fluid, tactile, and intentional.",
 };
 
-const slides: Slide[] = [
-  {
-    id: 1,
-    type: "video",
-    src: "/videos/play-like-its-personal.mp4",
-    alt: "lululemon product motion clip for an immersive commerce carousel.",
-  },
-  {
-    id: 2,
-    type: "image",
-    src: "/images/game-set-unmatched-gear.jpg",
-    alt: "lululemon tennis campaign image for product discovery.",
-  },
-  {
-    id: 3,
-    type: "video",
-    src: "/videos/slnsh-x-lululemon.mp4",
-    alt: "Saul Nash x lululemon motion clip for product storytelling.",
-  },
-];
+type HeroCarouselProps = {
+  className?: string;
+  showHeader?: boolean;
+  showInfo?: boolean;
+  variant?: "home" | "project-hero" | "project-demo";
+};
 
-const HeroCarousel = () => {
+const HeroCarousel = ({
+  className = "",
+  showHeader = true,
+  showInfo = true,
+  variant = "home",
+}: HeroCarouselProps) => {
   const [isPlaying, setIsPlaying] = useState(true);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const swiperRef = useRef<SwiperType | null>(null);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const previousActiveIndex = useRef<number>(0);
+  const paginationId = useId().replace(/:/g, "");
+  const paginationClass = `hero-pagination-${paginationId}`;
 
   const handlePointerMove = (event: PointerEvent<HTMLElement>) => {
     const rect = event.currentTarget.getBoundingClientRect();
@@ -126,15 +113,21 @@ const HeroCarousel = () => {
   }, [isPlaying, prefersReducedMotion]);
 
   return (
-    <section className="hero-showcase" aria-labelledby="hero-showcase-title">
-      <div className="hero-showcase-header">
-        <p className="hero-showcase-label" id="hero-showcase-title">
-          Featured Projects
-        </p>
-        <Link className="hero-showcase-link" to="/projects">
-          <span className="cta-text">All Projects</span>
-        </Link>
-      </div>
+    <section
+      className={`hero-showcase hero-showcase--${variant} ${className}`}
+      aria-labelledby={showHeader ? "hero-showcase-title" : undefined}
+      aria-label={showHeader ? undefined : "Immersive Product Carousel"}
+    >
+      {showHeader ? (
+        <div className="hero-showcase-header">
+          <p className="hero-showcase-label" id="hero-showcase-title">
+            Featured Projects
+          </p>
+          <Link className="hero-showcase-link" to="/projects">
+            <span className="cta-text">All Projects</span>
+          </Link>
+        </div>
+      ) : null}
       <div
         className="hero-carousel"
         onPointerMove={handlePointerMove}
@@ -148,7 +141,7 @@ const HeroCarousel = () => {
           pagination={{
             clickable: true,
             type: "bullets",
-            el: ".hero-pagination",
+            el: `.${paginationClass}`,
             renderBullet: (index: number, className: string) => {
               return `<span class="${className}"><span class="bullet-inner">${
                 index + 1
@@ -175,7 +168,7 @@ const HeroCarousel = () => {
 
             // Remove exiting class from all bullets
             const bullets = document.querySelectorAll(
-              ".swiper-pagination-bullet"
+              `.${paginationClass} .swiper-pagination-bullet`
             );
             bullets.forEach((bullet) => {
               bullet.classList.remove("bullet-exiting");
@@ -195,7 +188,7 @@ const HeroCarousel = () => {
           onAutoplayStart={() => setIsPlaying(true)}
           onAutoplayStop={() => setIsPlaying(false)}
         >
-          {slides.map((slide, index) => (
+          {heroCarouselSlides.map((slide, index) => (
             <SwiperSlide key={slide.id}>
               <div className="hero-slide">
                 {slide.type === "video" ? (
@@ -224,20 +217,22 @@ const HeroCarousel = () => {
           ))}
         </Swiper>
 
-        <div className="hero-slide-info" aria-live="polite">
-          <div className="hero-slide-info-panel">
-            <div className="hero-slide-meta">{featuredProject.metadata}</div>
-            <h3>
-              <Link to={featuredProject.href}>{featuredProject.title}</Link>
-            </h3>
-            <p>{featuredProject.description}</p>
+        {showInfo ? (
+          <div className="hero-slide-info" aria-live="polite">
+            <div className="hero-slide-info-panel">
+              <div className="hero-slide-meta">{featuredProject.metadata}</div>
+              <h3>
+                <Link to={featuredProject.href}>{featuredProject.title}</Link>
+              </h3>
+              <p>{featuredProject.description}</p>
+            </div>
           </div>
-        </div>
+        ) : null}
 
         {/* Combined Controls: Pagination + Play/Pause Button */}
         <div className="hero-controls">
           {/* Custom Pagination Container */}
-          <div className="hero-pagination"></div>
+          <div className={`hero-pagination ${paginationClass}`}></div>
 
           {/* Play/Pause Button */}
           <button
