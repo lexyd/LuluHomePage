@@ -9,9 +9,30 @@ import {
   youtubeChannelUrl,
   type VideoCategory,
 } from "../data/videos";
+import { writtenResources, type WrittenResource } from "../data/portfolioResources";
 import "./VideosPage.css";
 
 type ActiveCategory = "All" | VideoCategory;
+
+const ResourceCard = ({ resource }: { resource: WrittenResource }) => (
+  <a
+    className="resource-card"
+    href={resource.href}
+    target="_blank"
+    rel="noreferrer"
+    aria-label={`Open resource: ${resource.title}`}
+  >
+    <span className="projects-eyebrow">
+      {resource.category} · {resource.source}
+    </span>
+    <span className="resource-card-title">{resource.title}</span>
+    <span className="resource-card-description">{resource.description}</span>
+    <span className="video-card-action">
+      Open resource
+      <ExternalLinkIcon className="video-action-icon" />
+    </span>
+  </a>
+);
 
 const VideosPage = () => {
   const [activeCategory, setActiveCategory] = useState<ActiveCategory>("All");
@@ -31,7 +52,12 @@ const VideosPage = () => {
         <section className="latest-videos" aria-labelledby="latest-videos-title">
           <div className="videos-rail">
             <div className="videos-section-header">
-              <h1 id="latest-videos-title">Video Articles</h1>
+              <p className="projects-eyebrow">Resources</p>
+              <h1 id="latest-videos-title">Writing & Videos</h1>
+              <p>
+                Articles, tutorials, and older resources on design systems,
+                Figma, AI, and product design.
+              </p>
               <div className="video-filters" aria-label="Filter videos by category">
                 {videoCategories.map((category) => (
                   <button
@@ -53,6 +79,19 @@ const VideosPage = () => {
             <div className="video-grid">
               {videoArticles.map((video) => (
                 <VideoCard key={video.youtubeId} video={video} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="written-resources" aria-labelledby="written-resources-title">
+          <div className="videos-rail">
+            <div className="videos-section-header">
+              <h2 id="written-resources-title">Written Articles</h2>
+            </div>
+            <div className="resource-grid">
+              {writtenResources.map((resource) => (
+                <ResourceCard key={resource.href} resource={resource} />
               ))}
             </div>
           </div>

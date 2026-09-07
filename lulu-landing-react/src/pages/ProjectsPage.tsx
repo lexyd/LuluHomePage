@@ -2,6 +2,7 @@ import Footer from "../components/Footer";
 import Navigation from "../components/Navigation";
 import GitHubContributions from "../components/projects/GitHubContributions";
 import ProjectListItem from "../components/projects/ProjectListItem";
+import ProjectMeta from "../components/projects/ProjectMeta";
 import SectionHeading from "../components/projects/SectionHeading";
 import {
   activeCaseStudySlugs,
@@ -10,6 +11,7 @@ import {
   featuredProjects,
   projectGroups,
 } from "../data/projects";
+import { portfolioCaseStudies } from "../data/portfolioResources";
 import "./ProjectsPage.css";
 
 type PersonalProject = {
@@ -56,20 +58,41 @@ const PersonalProjectList = ({ projects }: { projects: PersonalProject[] }) => (
           key={project.url}
           {...externalProps}
         >
-        {project.avatar ? (
-          <span className="personal-project-avatar" aria-hidden="true">
-            <img src={project.avatar} alt="" />
+          {project.avatar ? (
+            <span className="personal-project-avatar" aria-hidden="true">
+              <img src={project.avatar} alt="" />
+            </span>
+          ) : null}
+          <span className="personal-project-copy">
+            <span className="personal-project-title">{project.title}</span>
+            <span className="personal-project-description">
+              {project.description}
+            </span>
           </span>
-        ) : null}
-        <span className="personal-project-copy">
-          <span className="personal-project-title">{project.title}</span>
-          <span className="personal-project-description">
-            {project.description}
-          </span>
-        </span>
         </a>
       );
     })}
+  </div>
+);
+
+const EarlierWorkList = () => (
+  <div className="featured-project-grid earlier-work-grid">
+    {portfolioCaseStudies.map((project) => (
+      <article
+        className="project-list-item project-list-item--selected earlier-work-card"
+        key={project.title}
+        aria-label={project.title}
+      >
+        <div className="project-list-image earlier-work-media" aria-hidden="true">
+          <img src={project.image} alt="" loading="lazy" />
+        </div>
+        <div className="project-list-copy earlier-work-copy">
+          <ProjectMeta company={project.eyebrow} />
+          <h3>{project.title}</h3>
+          <p>{project.description}</p>
+        </div>
+      </article>
+    ))}
   </div>
 );
 
@@ -101,6 +124,19 @@ const ProjectsPage = () => {
                 <ProjectListItem key={project.slug} project={project} selected />
               ))}
             </div>
+          </div>
+        </section>
+
+        <section
+          className="projects-earlier-work"
+          aria-label="Design systems and product studies"
+        >
+          <div className="projects-work-rail">
+            <SectionHeading
+              title="Design Systems & Product Studies"
+              description="Focused product and systems work across design systems, AI interaction, and mobile product experiences."
+            />
+            <EarlierWorkList />
           </div>
         </section>
 
