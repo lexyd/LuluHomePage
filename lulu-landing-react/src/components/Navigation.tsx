@@ -49,7 +49,7 @@ const Navigation = () => {
             </svg>
             <span className="nav-link-text">Projects</span>
           </NavLink>
-          <NavLink to="/videos" className="nav-link">
+          <NavLink to="/resources" className="nav-link">
             <svg
               width="16"
               height="16"
@@ -61,7 +61,7 @@ const Navigation = () => {
               <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
               <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
             </svg>
-            <span className="nav-link-text">Videos</span>
+            <span className="nav-link-text">Resources</span>
           </NavLink>
           <a
             href="mailto:destinyihejirika@gmail.com"

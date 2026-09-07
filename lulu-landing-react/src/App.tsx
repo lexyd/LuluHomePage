@@ -14,11 +14,12 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/projects" element={<ProjectsPage />} />
         <Route path="/projects/:slug" element={<ProjectDetailPage />} />
-        <Route path="/videos" element={<VideosPage />} />
+        <Route path="/resources" element={<VideosPage />} />
+        <Route path="/videos" element={<Navigate to="/resources" replace />} />
         <Route path="/contact" element={<HomePage />} />
         <Route path="/new" element={<Navigate to="/" replace />} />
         <Route path="/women" element={<Navigate to="/about" replace />} />
-        <Route path="/accessories" element={<Navigate to="/videos" replace />} />
+        <Route path="/accessories" element={<Navigate to="/resources" replace />} />
         <Route path="/men" element={<Navigate to="/projects" replace />} />
         <Route path="/mothers-day" element={<Navigate to="/contact" replace />} />
         <Route path="*" element={<HomePage />} />

@@ -7,6 +7,7 @@
 
 .projects-hero,
 .projects-featured,
+.projects-earlier-work,
 .project-groups {
   width: min(100%, 1440px);
   margin: 0 auto;
@@ -54,6 +55,7 @@
 }
 
 .projects-featured,
+.projects-earlier-work,
 .project-groups {
   padding-top: 2.5rem;
   padding-bottom: 3.25rem;
@@ -86,6 +88,19 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
+}
+
+.earlier-work-media {
+  background: var(--lulu-light-gray);
+}
+
+.earlier-work-media img {
+  object-fit: cover;
+}
+
+.earlier-work-copy p {
+  white-space: normal;
+  -webkit-line-clamp: 2;
 }
 
 .featured-project,
@@ -759,7 +774,8 @@
 }
 
 @media (max-width: 860px) {
-  .featured-project-grid {
+  .featured-project-grid,
+  .earlier-work-grid {
     grid-template-columns: 1fr;
   }
 
@@ -771,6 +787,7 @@
 @media (max-width: 768px) {
   .projects-hero,
   .projects-featured,
+  .projects-earlier-work,
   .project-groups {
     padding-right: 1rem;
     padding-left: 1rem;
@@ -794,7 +811,8 @@
     grid-template-columns: 1fr;
   }
 
-  .featured-project-grid {
+  .featured-project-grid,
+  .earlier-work-grid {
     gap: 0.65rem;
   }
 
